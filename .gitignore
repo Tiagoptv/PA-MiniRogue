@@ -1,16 +1,11 @@
-MiniRogue/nbproject/private/
-MiniRogue/build/
-MiniRogue/nbbuild/
-MiniRogue/dist/
-MiniRogue/nbdist/
-MiniRogue/.nb-gradle/
-
 nbproject/private/
 build/
 nbbuild/
 dist/
 nbdist/
 .nb-gradle/
+nbactions.xml
+nb-configuration.xml
 
 *.class
 
