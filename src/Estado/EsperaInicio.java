@@ -19,22 +19,22 @@ public class EsperaInicio extends EstadoAdapter {
 
     @Override
     public IEstado comecarJogo() {
-        return this;//getJogo().
+        return getJogo().comecarJogo();
     }
 
     @Override
     public IEstado escolherArea() {
-        return this;//getJogo().
+        return this;//getJogo().pedirArea();
     }
 
     @Override
     public IEstado escolherDificuldade() {
-        return this;//getJogo().
+        return this;//getJogo().pedirDificuldade();
     }
     
     @Override
     public IEstado carregarJogo() {
-        return this;//getJogo().
+        return this;//getJogo().carregarJogo();
     }
     
     

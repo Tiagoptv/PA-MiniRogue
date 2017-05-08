@@ -5,6 +5,8 @@
  */
 package Model.dados;
 
+import Estado.IEstado;
+import UIConsola.Menu;
 import java.util.ArrayList;
 import java.util.List;
 /**
@@ -12,6 +14,7 @@ import java.util.List;
  * @author Diogo
  */
 public class Jogo {
+    private IEstado estado;
     private Personagem p;
     private ArrayList<Carta> cartas;
     private int dificuldade, level, cartaAtual, area, nDadosDesbloqueados;
@@ -98,5 +101,10 @@ public class Jogo {
         }
         this.cartas.add(cartasTemp.get(0));
         this.cartas.add(new BossMonster(this));
+    }
+
+    public IEstado comecarJogo() {
+        Menu.ImprimePrincipal();
+        return estado;
     }
 }
