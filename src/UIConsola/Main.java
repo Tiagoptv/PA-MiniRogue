@@ -7,15 +7,13 @@ package UIConsola;
 
 import java.io.IOException;
 import Model.dados.*;
-/**
- *
- * @author Diogo
- */
+
+
 public class Main {
     public static void main(String args[]) {
         Jogo jogo = new Jogo();
    
         jogo.comecarMenus();
-        
+                
     }
 }

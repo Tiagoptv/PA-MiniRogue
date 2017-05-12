@@ -13,7 +13,11 @@ public interface IEstado {
     IEstado escolherDificuldade();
     IEstado escolherArea();
     IEstado carregarJogo();
+    IEstado comecarJogo();
     
     /*** Espera Carta ***/
-    IEstado comecarJogo();
+    
+    
+    /*** Espera Escolha Resting ***/
+    IEstado resolveResting();
 }

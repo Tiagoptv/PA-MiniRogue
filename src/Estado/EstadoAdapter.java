@@ -47,9 +47,18 @@ public class EstadoAdapter implements IEstado{
         return this;
     }
 
-
-    /***   Espera Carta   ***/
     
+    
+    /***  Espera Carta  ***/
+    
+    
+    
+    
+    /*** Espera Escolha Resting ***/
+    @Override
+    public IEstado resolveResting() {
+        return this;
+    }
 }
     
     

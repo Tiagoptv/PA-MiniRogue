@@ -11,10 +11,7 @@ import java.io.IOException;
 import java.util.Scanner;
 import Model.dados.*;
 
-/**
- *
- * @author Diogo
- */
+
 public class Menu {
     public static int ImprimePrincipal(){
         int op = 0;
@@ -110,6 +107,30 @@ public class Menu {
             op = sc.nextInt();
 
         }while( op >= 15 || op < 0);
+        
+        return op;
+    }
+    
+    public static int OpcaoRestingCard() {
+        int op = 0;
+        do{
+            
+            System.out.print("+");
+            for (int i = 0; i < 43; i++) {
+                System.out.print("-");
+            }
+            System.out.println("+");
+            System.out.print("|\t\t\t\t\t    |\n|                  M E N U                  |\n|\t\t\t\t\t    |\n| \tIndique a opcao desejada. (1-3)\t    |\n|\t\t\t\t\t    |\n| \t\t\t\t\t    |\n|\t\t\t\t\t    |\n|\t\t\t\t\t    |\n+");
+            for (int i = 0; i < 43; i++) {
+                System.out.print("-");
+            }
+            System.out.println("+\n");
+            System.out.print("Opcao: ");
+            Scanner sc = new Scanner(System.in);
+            while(( !sc.hasNextInt())) sc.next();
+            op = sc.nextInt();
+
+        }while( op >= 4 || op < 0);
         
         return op;
     }

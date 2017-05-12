@@ -5,10 +5,7 @@
  */
 package Model.dados;
 
-/**
- *
- * @author Diogo
- */
+
 abstract class CartaMonstro extends Carta{
     private int level, dmg, rewardXp, hp;
     private boolean congelado, envenenado;

@@ -13,6 +13,7 @@ public class Jogo {
     private ArrayList<Carta> cartas;
     private int dificuldade, level, cartaAtual, area, nDadosDesbloqueados;
     boolean derrotouMonstro;
+    boolean bossMonstro;
     
     public Jogo(){
         p = new Personagem();
@@ -20,8 +21,10 @@ public class Jogo {
         level = 1;
         cartas = new ArrayList<Carta>();
         cartaAtual = 0;
+        derrotouMonstro = false;
     }
     
+    //getters
     public Personagem getPersonagem(){return p;}
     public ArrayList<Carta> getCartas(){return cartas;}
     public int getDificuldade(){return dificuldade;}
@@ -32,6 +35,7 @@ public class Jogo {
     public Carta getCartaAtual(){return cartas.get(cartaAtual);}
     public int getNdadosDesbloqueados(){return nDadosDesbloqueados;}
     
+    //setters
     public void setPersonagem(Personagem p){this.p = p;}
     public void setCartas(ArrayList<Carta> cartas){this.cartas = cartas;}
     public void setDificuldade(int dificuldade){this.dificuldade = dificuldade;}
@@ -41,6 +45,22 @@ public class Jogo {
     public void setCartaAtual(int cartaAtual){this.cartaAtual = cartaAtual;}
     public void setNdadosDesbloqueados(int nDadosDesbloqueados){this.nDadosDesbloqueados =nDadosDesbloqueados;}
     
+    
+    public boolean comBossMonster() {
+        if( getArea() == 2 || getArea() == 4|| getArea() == 7 || getArea() == 10 || getArea() == 14)
+            return true;
+        return false;
+    }
+    public boolean maisCartas() {
+        
+        if(getCartas().isEmpty())
+            if(!comBossMonster())
+                return false;
+        return true;
+    }
+    
+    
+    /** Estado - Espera Inicio **/
     public void aplicaDificuldade(){
         switch(dificuldade){
             case 1:{
@@ -96,7 +116,7 @@ public class Jogo {
         this.cartas.add(cartasTemp.get(0));
         this.cartas.add(new BossMonster(this));
     }
-
+    
     public IEstado comecarMenus() {
         
         int op = Menu.ImprimePrincipal();
@@ -145,9 +165,31 @@ public class Jogo {
         aplicaDificuldade();  System.out.println("Dificuldade aplicada!");
         baralhaCartas();      System.out.println("Cartas Baralhadas!");
         
-        estado = new EsperaCarta(this);
+        //estado = new EsperaCarta(this);
         System.out.println("O Jogo vai agora comecar!");
         
+        return resolveResting();
+    }
+
+    
+    
+    /** Estado - Espera Carta **/
+
+    
+    
+    /** Estado - Espera Escolha Rest **/
+    public IEstado resolveResting() {
+        
+        Resting rest = new Resting();
+        
+        int op = Menu.OpcaoRestingCard();
+        rest.descansa(this, op);
+        
+        System.out.println("falta passar para a proxima coluna \nou \nmudar de arena");
+        //usar funçao maisCartas();
+        
+        estado = new EsperaCarta(this);
+
         return estado;
     }
 }

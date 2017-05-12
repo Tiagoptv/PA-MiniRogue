@@ -7,12 +7,15 @@ package Estado;
 
 import Model.dados.Jogo;
 
-
-public class EsperaCarta extends EstadoAdapter{
+public class EsperaEscolhaRest extends EstadoAdapter{
     
-    public EsperaCarta(Jogo jogo) {
+    public EsperaEscolhaRest(Jogo jogo) {
         super(jogo);
     }
     
+    @Override
+    public IEstado resolveResting() {
+        return getJogo().resolveResting();
+    }
     
 }

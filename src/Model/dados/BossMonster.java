@@ -5,10 +5,7 @@
  */
 package Model.dados;
 
-/**
- *
- * @author Diogo
- */
+
 public class BossMonster extends CartaMonstro{
     int rewardGold;
     
