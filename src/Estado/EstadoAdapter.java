@@ -7,10 +7,6 @@ package Estado;
 
 import Model.dados.Jogo;
 
-/**
- *
- * @author Tiago Prior
- */
 public class EstadoAdapter implements IEstado{
 
     private Jogo jogo;
@@ -27,7 +23,7 @@ public class EstadoAdapter implements IEstado{
     
     /***   Espera Inicio   ***/
     @Override
-    public IEstado comecarJogo() {
+    public IEstado comecarMenus() {
         return this;
     }
     
@@ -46,7 +42,14 @@ public class EstadoAdapter implements IEstado{
         return this;
     }
     
-    
+    @Override
+    public IEstado comecarJogo() {
+        return this;
+    }
+
+
     /***   Espera Carta   ***/
     
 }
+    
+    

@@ -7,10 +7,7 @@ package Estado;
 
 import Model.dados.Jogo;
 
-/**
- *
- * @author Tiago Prior
- */
+
 public class EsperaCarta extends EstadoAdapter{
     
     public EsperaCarta(Jogo jogo) {

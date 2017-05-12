@@ -13,12 +13,9 @@ import Model.dados.*;
  */
 public class Main {
     public static void main(String args[]) {
-        int op;
-        Merchant m = new Merchant();
-        op = Menu.ImprimePrincipal();//Menu.ImprimeCarrega();
-
-        if(op == 1){
-            m.desenhaCarta();
-        }
+        Jogo jogo = new Jogo();
+   
+        jogo.comecarMenus();
+        
     }
 }

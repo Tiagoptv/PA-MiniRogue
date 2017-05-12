@@ -5,17 +5,15 @@
  */
 package Estado;
 
-/**
- *
- * @author Tiago Prior
- */
+
 public interface IEstado {
     
     /***   Espera Inicio   ***/
-    IEstado comecarJogo();
+    IEstado comecarMenus();
     IEstado escolherDificuldade();
     IEstado escolherArea();
     IEstado carregarJogo();
     
-    
+    /*** Espera Carta ***/
+    IEstado comecarJogo();
 }

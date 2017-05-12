@@ -7,10 +7,7 @@ package Estado;
 
 import Model.dados.Jogo;
 
-/**
- *
- * @author Tiago Prior
- */
+
 public class EsperaInicio extends EstadoAdapter {
     
     public EsperaInicio(Jogo jogo) {
@@ -18,8 +15,8 @@ public class EsperaInicio extends EstadoAdapter {
     }
 
     @Override
-    public IEstado comecarJogo() {
-        return getJogo().comecarJogo();
+    public IEstado comecarMenus() {
+        return getJogo().comecarMenus();
     }
 
     @Override
@@ -36,7 +33,10 @@ public class EsperaInicio extends EstadoAdapter {
     public IEstado carregarJogo() {
         return this;//getJogo().carregarJogo();
     }
-    
-    
+
+    @Override
+    public IEstado comecarJogo() {
+        return this;
+    }
     
 }

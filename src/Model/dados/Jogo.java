@@ -1,18 +1,12 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package Model.dados;
 
+import Estado.EsperaCarta;
 import Estado.IEstado;
 import UIConsola.Menu;
 import java.util.ArrayList;
 import java.util.List;
-/**
- *
- * @author Diogo
- */
+
 public class Jogo {
     private IEstado estado;
     private Personagem p;
@@ -20,9 +14,9 @@ public class Jogo {
     private int dificuldade, level, cartaAtual, area, nDadosDesbloqueados;
     boolean derrotouMonstro;
     
-    public Jogo(int dificuldade){
+    public Jogo(){
         p = new Personagem();
-        this.dificuldade = dificuldade;
+        this.dificuldade = 0;
         level = 1;
         cartas = new ArrayList<Carta>();
         cartaAtual = 0;
@@ -86,16 +80,16 @@ public class Jogo {
     public void baralhaCartas(){
         ArrayList<Carta> cartasTemp = new ArrayList<>();
         
-        cartas.add(new Monster(this));
-        cartas.add(new Merchant());
-        cartas.add(new Trap());
-        cartas.add(new Treasure());
-        cartas.add(new Event());
-        cartas.add(new Resting());
+        cartasTemp.add(new Monster(this));
+        cartasTemp.add(new Merchant());
+        cartasTemp.add(new Trap());
+        cartasTemp.add(new Treasure());
+        cartasTemp.add(new Event());
+        cartasTemp.add(new Resting());
         
         int index;
         for (int i = cartas.size()-1; i > 0; i--) {
-            index = (int)(Math.random() * i);
+            index = (int)(Math.random() * i );
             this.cartas.add(cartasTemp.get(index));
             cartasTemp.remove(index);
         }
@@ -103,8 +97,57 @@ public class Jogo {
         this.cartas.add(new BossMonster(this));
     }
 
+    public IEstado comecarMenus() {
+        
+        int op = Menu.ImprimePrincipal();
+        
+        switch(op) {
+            case 1:
+
+                escolherArea();
+                escolherDificuldade();
+                
+                estado = comecarJogo();
+                
+                break;
+                
+            case 2:
+                System.out.println("Falta Implementar Load\nFalta Implementar Load\nFalta Implementar Load\n");
+                break;
+                
+            case 3:
+            break;
+        }
+        return estado;
+    }
+    
+    public IEstado escolherDificuldade() {
+        
+        int op = Menu.ImprimeSelectDificuldade();
+        
+        if(op != 5)
+            setDificuldade(op);
+
+        return estado;
+    }
+    
+    public IEstado escolherArea () {
+        
+        int op = Menu.ImprimeSelectArea();
+        
+        if(op != 0)
+            setArea(op);
+        
+        return estado;
+    }
+    
     public IEstado comecarJogo() {
-        Menu.ImprimePrincipal();
+        aplicaDificuldade();  System.out.println("Dificuldade aplicada!");
+        baralhaCartas();      System.out.println("Cartas Baralhadas!");
+        
+        estado = new EsperaCarta(this);
+        System.out.println("O Jogo vai agora comecar!");
+        
         return estado;
     }
 }
