@@ -1,9 +1,10 @@
 
 package Model.dados;
 
-import Estado.EsperaCarta;
+//import Estado.EsperaCarta;
 import Estado.IEstado;
 import UIConsola.Menu;
+import UIConsola.Informacoes;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -174,6 +175,13 @@ public class Jogo {
     
     
     /** Estado - Espera Carta **/
+    public IEstado resolveTresureEvent() {
+        
+        int dado = Dado.lancaDado();
+        Informacoes.resultadoDado(dado);
+        
+        return estado;
+    }
 
     
     
@@ -188,7 +196,7 @@ public class Jogo {
         System.out.println("falta passar para a proxima coluna \nou \nmudar de arena");
         //usar funçao maisCartas();
         
-        estado = new EsperaCarta(this);
+        //voltar ao EsperaCarta();
 
         return estado;
     }

@@ -50,12 +50,13 @@ public class EstadoAdapter implements IEstado{
     
     
     /***  Espera Carta  ***/
-    
-    
+    @Override
+    public IEstado resolveTresureEvent() {
+        return this;
+    }
     
     
     /*** Espera Escolha Resting ***/
-    @Override
     public IEstado resolveResting() {
         return this;
     }

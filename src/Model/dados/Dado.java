@@ -7,10 +7,6 @@ package Model.dados;
 
 import java.util.ArrayList;
 
-/**
- *
- * @author Diogo
- */
 public class Dado {
     
     Dado(){}

@@ -16,7 +16,7 @@ public interface IEstado {
     IEstado comecarJogo();
     
     /*** Espera Carta ***/
-    
+    IEstado resolveTresureEvent();
     
     /*** Espera Escolha Resting ***/
     IEstado resolveResting();
