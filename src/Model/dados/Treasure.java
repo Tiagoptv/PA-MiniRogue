@@ -4,11 +4,9 @@
  * and open the template in the editor.
  */
 package Model.dados;
+import UIConsola.Informacoes;
 
-/**
- *
- * @author Diogo
- */
+
 public class Treasure extends Carta{
     
     public Treasure(){
@@ -16,14 +14,19 @@ public class Treasure extends Carta{
     }
     
     public void recebeGold(Jogo j){
-        if(j.getDerrotouMonstro())
+        if(j.getDerrotouMonstro()) {
             j.getPersonagem().setGold(j.getPersonagem().getGold()+2);
-        else
+            Informacoes.recebeGold(2);
+        } else {
             j.getPersonagem().setGold(j.getPersonagem().getGold()+1);
+            Informacoes.recebeGold(1);
+        }
+        
+        
     }
     
-    public void opcaoAleatoria(Jogo j){
-        switch(Dado.lancaDado()){
+    public void efeitoCarta(Jogo j, int dado){
+        switch(dado){
             case 1: j.getPersonagem().setArmor(j.getPersonagem().getArmor()+1);break;
             
             case 2: j.getPersonagem().setXp(j.getPersonagem().getXp()+2);break;

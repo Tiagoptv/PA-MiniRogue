@@ -5,18 +5,14 @@
  */
 package Model.dados;
 
-/**
- *
- * @author Diogo
- */
 public class Event extends Carta{
     
     public Event(){
         nome = "Event";
     }
     
-    public void opcaoAleatoria(Jogo j){
-        switch(Dado.lancaDado()){
+    public void efeitoCarta(Jogo j, int dado){
+        switch(dado){
             case 1: j.getPersonagem().setFood((j.getPersonagem().getFood()+1));break;
             
             case 2: j.getPersonagem().setHp((j.getPersonagem().getHp()+2));break;

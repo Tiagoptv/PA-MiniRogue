@@ -180,6 +180,22 @@ public class Jogo {
         int dado = Dado.lancaDado();
         Informacoes.resultadoDado(dado);
         
+        if(getCartaAtual().nome == "Treasure") {
+            Treasure tesouro = new Treasure();
+            tesouro.recebeGold(this);
+            tesouro.efeitoCarta(this, dado);
+        }
+        
+        if(getCartaAtual().nome == "Event") {
+            Event evento = new Event();
+            evento.efeitoCarta(this, dado);
+        }
+        
+        System.out.println("falta passar para a proxima coluna \nou \nmudar de arena");
+        //usar funçao maisCartas();
+        
+        //voltar ao EsperaCarta();
+        
         return estado;
     }
 

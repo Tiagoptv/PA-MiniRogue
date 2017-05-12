@@ -17,4 +17,8 @@ public class Informacoes {
         System.out.println("Saiu o numero " + dado + " no dado!") ;
     }
     
+    public static void recebeGold(int gold) {
+        System.out.println("Recebeu " + gold + " moedas de ouro!");
+    }
+    
 }
