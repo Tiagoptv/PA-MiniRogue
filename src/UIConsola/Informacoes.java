@@ -21,4 +21,9 @@ public class Informacoes {
         System.out.println("Recebeu " + gold + " moedas de ouro!");
     }
     
+    public static void mostraInfo(Jogo j){
+        Personagem p = j.getPersonagem();
+        System.out.println("Rank: "+p.getRank()+"\tXp: "+p.getXp()+"\tArmor: "+p.getArmor()+"\tHp: "+p.getHp()+"\tGold: "+p.getGold()+"\tFood: "+p.getFood());
+        System.out.println("Spells\n\nFire: "+p.getFire()+"\tIce: "+p.getIce()+"\tPoison: "+p.getPoison()+"\tHeal: "+p.getHeal());
+    }  
 }

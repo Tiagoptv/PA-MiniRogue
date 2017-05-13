@@ -55,6 +55,15 @@ public class Personagem {
     public void setAtaques(ArrayList<Integer> ataques){this.ataques = ataques;}
     public void setDmg(int dmg){this.dmg = dmg;}
     
+    public boolean semComidaHp(Jogo j){
+        Personagem p = j.getPersonagem();
+        if(p.getFood() == 0){
+            p.setHp(p.getHp()-2);
+            return true;
+        }
+        return false;
+    }
+    
     public boolean verificaSpellsCheios(){
         if(nspells == 2)
             return true;
