@@ -13,7 +13,11 @@ public class Main {
     public static void main(String args[]) {
         Jogo jogo = new Jogo();
    
-        jogo.resolveTresureEvent();
+        Merchant m = new Merchant();
+        m.desenhaCarta();
+        Menu.realizarTroca();
+        Menu.opcaoMerchant();
+        
         jogo.comecarMenus();
                 
     }

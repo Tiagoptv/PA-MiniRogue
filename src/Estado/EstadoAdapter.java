@@ -48,7 +48,6 @@ public class EstadoAdapter implements IEstado{
     }
 
     
-    
     /***  Espera Carta  ***/
     @Override
     public IEstado resolveTresureEvent() {
@@ -57,7 +56,25 @@ public class EstadoAdapter implements IEstado{
     
     
     /*** Espera Escolha Resting ***/
+    @Override
     public IEstado resolveResting() {
+        return this;
+    }
+
+    
+    /*** Espera Troca ***/
+    @Override
+    public IEstado resolveMerchant() {
+        return this;
+    }
+
+    @Override
+    public IEstado realizarCompra(int item) {
+        return this;
+    }
+
+    @Override
+    public IEstado realizarVenda(int item) {
         return this;
     }
 }

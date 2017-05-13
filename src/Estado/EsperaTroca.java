@@ -7,14 +7,24 @@ package Estado;
 
 import Model.dados.Jogo;
 
-public class EsperaCarta extends EstadoAdapter{
+public class EsperaTroca extends EstadoAdapter {
     
-    public EsperaCarta(Jogo jogo) {
+    public EsperaTroca(Jogo jogo) {
         super(jogo);
     }
     
     @Override
-    public IEstado resolveTresureEvent() {
+    public IEstado resolveMerchant() {
+        return this;
+    }
+    
+    @Override
+    public IEstado realizarCompra(int item) {
+        return this;
+    }
+
+    @Override
+    public IEstado realizarVenda(int item) {
         return this;
     }
     

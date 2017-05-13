@@ -163,13 +163,13 @@ public class Jogo {
     }
     
     public IEstado comecarJogo() {
-        aplicaDificuldade();  System.out.println("Dificuldade aplicada!");
-        baralhaCartas();      System.out.println("Cartas Baralhadas!");
+        aplicaDificuldade();  //System.out.println("Dificuldade aplicada!");
+        baralhaCartas();      //System.out.println("Cartas Baralhadas!");
         
         //estado = new EsperaCarta(this);
         System.out.println("O Jogo vai agora comecar!");
         
-        return resolveResting();
+        return resolveTresureEvent();
     }
 
     
@@ -180,13 +180,13 @@ public class Jogo {
         int dado = Dado.lancaDado();
         Informacoes.resultadoDado(dado);
         
-        if(getCartaAtual().nome == "Treasure") {
+        if(getCartaAtual().getNome().equals("Treasure")) {
             Treasure tesouro = new Treasure();
             tesouro.recebeGold(this);
             tesouro.efeitoCarta(this, dado);
         }
         
-        if(getCartaAtual().nome == "Event") {
+        if(getCartaAtual().getNome().equals("Event")) {
             Event evento = new Event();
             evento.efeitoCarta(this, dado);
         }
@@ -198,11 +198,11 @@ public class Jogo {
         
         return estado;
     }
-
+   
     
     
     /** Estado - Espera Escolha Rest **/
-    public IEstado resolveResting() {
+     public IEstado resolveResting() {
         
         Resting rest = new Resting();
         
@@ -216,4 +216,44 @@ public class Jogo {
 
         return estado;
     }
+     
+     
+     
+     /** Estado - Espera Escolha Merchant **/
+     public IEstado resolveMerchant() {
+        
+        int op = Menu.realizarTroca();
+        switch(op) {
+            case 1:
+                op = Menu.opcaoMerchant();
+        
+                if(op <= 5)
+                    return realizaCompra(op);
+                else 
+                    return realizaVenda(op);
+                
+            case 2:
+                System.out.println("falta passar para a proxima coluna \nou \nmudar de arena");
+                //usar funçao maisCartas();
+        
+                //voltar ao EsperaCarta();
+                return estado;
+            
+            default: return estado;
+        }
+    }
+     
+     public IEstado realizaCompra(int item) {
+        Merchant m = new Merchant();
+        m.realizaCompra(this, item);
+        
+        return resolveMerchant();
+     }
+     
+     public IEstado realizaVenda(int item) {
+        Merchant m = new Merchant();
+        m.realizaVenda(this, item);
+        
+        return resolveMerchant();
+     }
 }

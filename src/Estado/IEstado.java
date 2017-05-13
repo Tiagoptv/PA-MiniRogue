@@ -18,6 +18,12 @@ public interface IEstado {
     /*** Espera Carta ***/
     IEstado resolveTresureEvent();
     
+    
     /*** Espera Escolha Resting ***/
     IEstado resolveResting();
+    
+    /*** Espera Troca ***/
+    IEstado resolveMerchant();
+    IEstado realizarCompra(int item);
+    IEstado realizarVenda(int intem);
 }
