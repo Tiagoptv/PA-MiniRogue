@@ -5,6 +5,12 @@ package Model.dados;
 import Estado.IEstado;
 import UIConsola.Menu;
 import UIConsola.Informacoes;
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.FileReader;
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -140,6 +146,32 @@ public class Jogo {
             break;
         }
         return estado;
+    }
+    
+    public void guardarJogo(Jogo j) throws FileNotFoundException {
+        PrintWriter out = null;
+        
+        try{
+            out = new PrintWriter(new FileOutputStream("jogosGuardados.txt"));
+            
+            out.println(j);
+        }finally{
+            if(out != null)
+                out.close();
+        }
+    }
+    
+    public void carregaJogo(Jogo j) throws FileNotFoundException, IOException{
+        BufferedReader in = null;
+        String s;
+        
+        try{
+            in = new BufferedReader(new FileReader("jogosGuardados.txt"));
+            
+            s = in.readLine();
+        }finally{
+            if(in != null) in.close();
+        }
     }
     
     public IEstado escolherDificuldade() {
