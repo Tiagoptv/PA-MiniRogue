@@ -169,7 +169,7 @@ public class Jogo {
         //estado = new EsperaCarta(this);
         System.out.println("O Jogo vai agora comecar!");
         
-        return resolveTresureEvent();
+        return estado ;
     }
 
     
@@ -196,6 +196,12 @@ public class Jogo {
         
         //voltar ao EsperaCarta();
         
+        return estado;
+    }
+    
+    public IEstado mostroEncontrado() {
+        if(getCartaAtual().nome.equals("Monster") || getCartaAtual().nome.equals("BossMonster") )
+            return estado;
         return estado;
     }
    

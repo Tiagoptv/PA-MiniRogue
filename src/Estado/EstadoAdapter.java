@@ -54,6 +54,11 @@ public class EstadoAdapter implements IEstado{
         return this;
     }
     
+    @Override
+    public IEstado monstroEncontrado() {
+        return this;
+    }
+    
     
     /*** Espera Escolha Resting ***/
     @Override
@@ -77,6 +82,8 @@ public class EstadoAdapter implements IEstado{
     public IEstado realizarVenda(int item) {
         return this;
     }
+
+    
 }
     
     

@@ -18,4 +18,9 @@ public class EsperaCarta extends EstadoAdapter{
         return this;
     }
     
+    @Override
+    public IEstado monstroEncontrado() {
+        return this;
+    }
+    
 }

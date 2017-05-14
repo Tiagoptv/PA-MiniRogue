@@ -38,8 +38,43 @@ public class BossMonster extends CartaMonstro{
                 j.getCartas().set(i, new Treasure());
         }
     }
-    
+
     public void desenhaCarta(){
-        
+        System.out.print("+");
+        for (int i = 0; i < 52; i++) {
+            System.out.print("-");
+        }
+        System.out.println("+");
+        System.out.println("+\t\t     Boss Monster\t\t     +");
+        System.out.println("+\t\t\t\t\t\t     +");
+        System.out.println("+\t\t\t\t\t\t     +");
+        System.out.println("+\t\t\t\t\t\t     +");
+        System.out.println("+\t\t\t\t\t\t     +");
+        System.out.println("+\t\t\t\t\t\t     +");
+        System.out.println("+\t\t\t\t\t\t     +");
+        System.out.println("+\t\t\t\t\t\t     +");
+        System.out.println("+\t\t\t\t\t\t     +");
+        System.out.println("+\t\t\t\t\t\t     +");
+        System.out.println("+\t\t\t\t\t\t     +");
+        System.out.println("+\t\t\t\t\t\t     +");
+        System.out.println("+\t\t\t\t\t\t     +");
+        System.out.println("+  Level\t\t HP \tDMG  \tREWARD       +");
+        System.out.println("+\t\t\t\t\t\t     +");
+        System.out.println("+\033[31m  1. Undead Giant       10      3   \t\033[0m\033[32m2$ + 2 XP    \033[0m+");
+        System.out.println("+\t\t\t\t\t\t     +");
+        System.out.println("+\033[31m  2. Skeleton Lord      15      5   \t\033[0m\033[32m2$ + 3 XP    \033[0m+");
+        System.out.println("+\t\t\t\t\t\t     +");
+        System.out.println("+\033[31m  3. Undead Lord        20      7   \t\033[0m\033[32m3$ + 4 XP    \033[0m+");
+        System.out.println("+\t\t\t\t\t\t     +");
+        System.out.println("+\033[31m  4. Serpent Demon      25      9   \t\033[0m\033[32m3$ + 5 XP    \033[0m+");
+        System.out.println("+\t\t\t\t\t\t     +");
+        System.out.println("+ \033[31m 5. Og's Remains       30      12  \t\033[0m\033[32mOG's BLOOD   \033[0m+");
+        System.out.println("+\t\t\t\t\t\t     +");
+        System.out.println("+*Todos os rewards contem um item \t\t     +");
+        System.out.print("+");
+        for (int i = 0; i < 52; i++) {
+            System.out.print("-");
+        }
+        System.out.println("+");
     }
 }

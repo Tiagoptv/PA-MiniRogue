@@ -17,6 +17,7 @@ public interface IEstado {
     
     /*** Espera Carta ***/
     IEstado resolveTresureEvent();
+    IEstado monstroEncontrado();
     
     
     /*** Espera Escolha Resting ***/
