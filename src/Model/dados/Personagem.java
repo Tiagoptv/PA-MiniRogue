@@ -94,15 +94,19 @@ public class Personagem {
     }
     
     
-    
+    public void aplicaAtaque(Jogo j){
+       int dmg = 0;
+       
+       for(int i : ataques)
+           dmg += i;
+       
+       CartaMonstro cm = (CartaMonstro)j.getCartaAtual();
+       
+       cm.setHp(cm.getHp()-dmg);
+    }
 
     public void recolheAtaques(Jogo j){  
         ataques = Dado.lancaDadosDesbloqueados(j.getNdadosDesbloqueados());
-    }
-
-    public void ataca(Jogo j, int dmg){
-        CartaMonstro m = (CartaMonstro) j.getCartaAtual();
-        m.setHp(m.getHp()-dmg);
     }
 
     public void featsHp(Jogo j, int indexAtaque){
@@ -141,9 +145,5 @@ public class Personagem {
         }
     }
     
-    public void aplicaAtaque(Jogo j){
-       int dmg = 0;
-       
-       //for()
-    }
+    
 }

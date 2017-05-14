@@ -124,7 +124,8 @@ public class Jogo {
             cartasTemp.remove(index);
         }
         this.cartas.add(cartasTemp.get(0));
-        this.cartas.add(new BossMonster(this));
+        if(comBossMonster())
+            this.cartas.add(new BossMonster(this));
     }
     
     public IEstado comecarMenus() {
@@ -235,7 +236,7 @@ public class Jogo {
         return estado;
     }
     
-    public IEstado mostroEncontrado() {
+    public IEstado monstroEncontrado() {
         if(getCartaAtual().nome.equals("Monster") || getCartaAtual().nome.equals("BossMonster") )
             return estado;
         return estado;
@@ -320,7 +321,7 @@ public class Jogo {
      }
      
      public IEstado somaAtaque() {
-         p.
+         //p.
          return estado;
      }
 
