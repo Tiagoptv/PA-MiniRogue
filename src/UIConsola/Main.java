@@ -12,7 +12,7 @@ import Model.dados.*;
 public class Main {
     public static void main(String args[]) {
         Jogo jogo = new Jogo();
-        Monster b = new Monster(jogo);
+        Treasure b = new Treasure();
         b.desenhaCarta();
        // jogo.comecarMenus();
                 

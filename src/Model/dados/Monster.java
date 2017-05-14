@@ -45,7 +45,7 @@ public class Monster extends CartaMonstro {
             System.out.print("-");
         }
         System.out.println("+");
-        System.out.println("+\t\t     Boss Monster\t\t     +");
+        System.out.println("+\t\t        Monster\t\t             +");
         System.out.println("+\t\t\t\t\t\t     +");
         System.out.println("+\t\t\t\t\t\t     +");
         System.out.println("+\t\t\t\t\t\t     +");
