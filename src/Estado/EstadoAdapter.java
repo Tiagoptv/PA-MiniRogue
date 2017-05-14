@@ -26,22 +26,18 @@ public class EstadoAdapter implements IEstado{
     public IEstado comecarMenus() {
         return this;
     }
-    
     @Override
     public IEstado escolherDificuldade() {
         return this;
     }
-    
     @Override
     public IEstado escolherArea() {
         return this;
     }
-    
     @Override
     public IEstado carregarJogo() {
         return this;
     }
-    
     @Override
     public IEstado comecarJogo() {
         return this;
@@ -53,7 +49,6 @@ public class EstadoAdapter implements IEstado{
     public IEstado resolveTresureEvent() {
         return this;
     }
-    
     @Override
     public IEstado monstroEncontrado() {
         return this;
@@ -72,16 +67,23 @@ public class EstadoAdapter implements IEstado{
     public IEstado resolveMerchant() {
         return this;
     }
-
     @Override
     public IEstado realizarCompra(int item) {
         return this;
     }
-
     @Override
     public IEstado realizarVenda(int item) {
         return this;
     }
+    
+    /*** Espera Ataque ***/
+    @Override
+    public IEstado lancaDados() {
+        return this;
+    }
+    
+    /*** Espera Feats ***/
+    
 
     
 }

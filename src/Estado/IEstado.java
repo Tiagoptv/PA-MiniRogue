@@ -27,4 +27,10 @@ public interface IEstado {
     IEstado resolveMerchant();
     IEstado realizarCompra(int item);
     IEstado realizarVenda(int intem);
+    
+    /*** Espera Ataque ***/
+    IEstado lancaDados();
+    
+    /*** Espera Feats ***/
+    IEstado 
 }

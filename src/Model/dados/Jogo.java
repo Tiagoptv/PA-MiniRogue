@@ -206,7 +206,6 @@ public class Jogo {
     }
    
     
-    
     /** Estado - Espera Escolha Rest **/
      public IEstado resolveResting() {
         
@@ -222,7 +221,6 @@ public class Jogo {
 
         return estado;
     }
-     
      
      
      /** Estado - Espera Escolha Merchant **/
@@ -262,4 +260,15 @@ public class Jogo {
         
         return resolveMerchant();
      }
+     
+     
+     /** Estado - Espera Ataque **/
+     public IEstado lancaDados() {
+         Dado.lancaDadosDesbloqueados(nDadosDesbloqueados);
+         
+         System.out.println("Tem de se dizer os valores dos dados \npara poder realizar o feats");
+         
+         return estado;
+     }
+
 }

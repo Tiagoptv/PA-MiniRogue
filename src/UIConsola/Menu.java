@@ -182,5 +182,29 @@ public class Menu {
         
         return op;
     }
+    
+    public static int utilizarFeat() {
+        int op = 0;
+        do{
+            
+            System.out.print("+");
+            for (int i = 0; i < 43; i++) {
+                System.out.print("-");
+            }
+            System.out.println("+");
+            System.out.print("|\t\t\t\t\t    |\n|                  M E N U                  |\n|\t\t\t\t\t    |\n| \tPretende utilizar uma troca? \t    |\n|\t\t\t\t\t    |\n| \t  1. Sim\t2. Nao\t\t    |\n|\t\t\t\t\t    |\n|\t\t\t\t\t    |\n+");
+            for (int i = 0; i < 43; i++) {
+                System.out.print("-");
+            }
+            System.out.println("+\n");
+            System.out.print("Opcao: ");
+            Scanner sc = new Scanner(System.in);
+            while(( !sc.hasNextInt())) sc.next();
+            op = sc.nextInt();
+
+        }while( op >= 3 || op < 0);
+        
+        return op;
+    }
 }
 
