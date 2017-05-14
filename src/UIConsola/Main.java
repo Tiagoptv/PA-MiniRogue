@@ -12,19 +12,9 @@ import Model.dados.*;
 public class Main {
     public static void main(String args[]) {
         Jogo jogo = new Jogo();
-<<<<<<< HEAD
-   
-        Merchant m = new Merchant();
-        m.desenhaCarta();
-        Menu.realizarTroca();
-        Menu.opcaoMerchant();
-        
+
         jogo.comecarMenus();
-=======
-        Treasure b = new Treasure();
-        b.desenhaCarta();
-       // jogo.comecarMenus();
->>>>>>> 7184bc8e4b92573c59c41c6133aa135cd57a47c5
+
                 
     }
 }

@@ -8,14 +8,12 @@ package Estado;
 import Model.dados.Jogo;
 
 
-public class EsperaAtaque extends EstadoAdapter {
+public class EsperaFeats extends EstadoAdapter{
     
-    public EsperaAtaque(Jogo jogo) {
+    public EsperaFeats(Jogo jogo) {
         super(jogo);
     }
     
-    @Override
-    public IEstado lancaDados() {
-        return this;
-    }
+    
+    
 }
