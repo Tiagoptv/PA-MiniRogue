@@ -95,7 +95,7 @@ public class Personagem {
     
     
     
-    public void ataca(Jogo j){  
+    public void recolheAtaques(Jogo j){  
         ArrayList<Integer> lancamentos = Dado.lancaDadosDesbloqueados(j.getNdadosDesbloqueados());
     }
 
