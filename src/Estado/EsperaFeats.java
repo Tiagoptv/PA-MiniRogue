@@ -14,6 +14,10 @@ public class EsperaFeats extends EstadoAdapter{
         super(jogo);
     }
     
-    
+    @Override
+    public IEstado aplicaFeats() {
+        return this;
+    }
+
     
 }

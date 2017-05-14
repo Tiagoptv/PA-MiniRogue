@@ -32,5 +32,5 @@ public interface IEstado {
     IEstado lancaDados();
     
     /*** Espera Feats ***/
-    IEstado 
+    IEstado aplicaFeats();
 }

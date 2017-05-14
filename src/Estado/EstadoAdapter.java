@@ -83,7 +83,10 @@ public class EstadoAdapter implements IEstado{
     }
     
     /*** Espera Feats ***/
-    
+    @Override
+    public IEstado aplicaFeats() {
+        return this;
+    }
 
     
 }
