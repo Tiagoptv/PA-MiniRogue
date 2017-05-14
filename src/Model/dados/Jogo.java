@@ -6,10 +6,13 @@ import Estado.IEstado;
 import UIConsola.Menu;
 import UIConsola.Informacoes;
 import java.io.BufferedReader;
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
@@ -148,27 +151,28 @@ public class Jogo {
         return estado;
     }
     
-    public void guardarJogo(Jogo j) throws FileNotFoundException {
-        PrintWriter out = null;
+    public void guardarJogo() throws FileNotFoundException, IOException {
+        ObjectOutputStream out = null;
         
         try{
-            out = new PrintWriter(new FileOutputStream("jogosGuardados.txt"));
+            out = new ObjectOutputStream(new FileOutputStream("jogosGuardados.txt"));
             
-            out.println(j);
+            out.writeObject(this);
         }finally{
             if(out != null)
                 out.close();
         }
     }
     
-    public void carregaJogo(Jogo j) throws FileNotFoundException, IOException{
-        BufferedReader in = null;
-        String s;
+    public static Jogo carregaJogo() throws FileNotFoundException, IOException, ClassNotFoundException{
+        ObjectInputStream in = null;
+        Jogo j;
         
         try{
-            in = new BufferedReader(new FileReader("jogosGuardados.txt"));
+            in = new ObjectInputStream(new FileInputStream("jogosGuardados.txt"));
             
-            s = in.readLine();
+            j = (Jogo)in.readObject();
+            return j;
         }finally{
             if(in != null) in.close();
         }
