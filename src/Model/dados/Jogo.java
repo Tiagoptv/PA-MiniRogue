@@ -270,5 +270,8 @@ public class Jogo {
          
          return estado;
      }
+     
+     
+     /** Estado - Espera Feats **/
 
 }
