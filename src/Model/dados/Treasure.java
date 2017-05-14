@@ -8,9 +8,10 @@ import UIConsola.Informacoes;
 
 
 public class Treasure extends Carta{
-    
+    int spellTroca;
     public Treasure(){
         nome = "Treasure";
+        spellTroca = 0;
     }
     
     public void recebeGold(Jogo j){
@@ -23,48 +24,82 @@ public class Treasure extends Carta{
         }  
     }
     
-    public void efeitoCarta(Jogo j, int dado){
+    public void trocaSpell(Jogo j, int opcao){
+        //retira spell
+        switch(opcao){
+            case 1: j.getPersonagem().setFire(j.getPersonagem().getFire()-1);break;
+            
+            case 2: j.getPersonagem().setIce(j.getPersonagem().getIce()-1);break;
+            
+            case 3: j.getPersonagem().setPoison(j.getPersonagem().getPoison()-1);break;
+            
+            case 4: j.getPersonagem().setHeal(j.getPersonagem().getHeal()-1);break;
+        }
+        
+        switch(spellTroca){
+            case 1: j.getPersonagem().setFire(j.getPersonagem().getFire()+1);break;
+            
+            case 2: j.getPersonagem().setIce(j.getPersonagem().getIce()+1);break;
+            
+            case 3: j.getPersonagem().setPoison(j.getPersonagem().getPoison()+1);break;
+            
+            case 4: j.getPersonagem().setHeal(j.getPersonagem().getHeal()+1);break; 
+        }
+        
+        spellTroca = 0;
+    }
+    
+    public int efeitoCarta(Jogo j, int dado){
         switch(dado){
             case 1: j.getPersonagem().setArmor(j.getPersonagem().getArmor()+1);break;
             
             case 2: j.getPersonagem().setXp(j.getPersonagem().getXp()+2);break;
             
             case 3: {
-                if(!(j.getPersonagem().verificaSpellsCheios()))
+                if(!(j.getPersonagem().verificaSpellsCheios())){
                      j.getPersonagem().setFire(j.getPersonagem().getFire()+1);
-                else{
+                     j.getPersonagem().setNspells(j.getPersonagem().getNspells()+1);
+                }else{
+                    spellTroca = 1;
                     //Pergunta se quer trocar spell
                 }
                 break;
             }
             
             case 4: {
-                if(!(j.getPersonagem().verificaSpellsCheios()))
+                if(!(j.getPersonagem().verificaSpellsCheios())){
                      j.getPersonagem().setIce(j.getPersonagem().getIce()+1);
-                else{
+                     j.getPersonagem().setNspells(j.getPersonagem().getNspells()+1);
+                }else{
+                    spellTroca = 2;
                     //Pergunta se quer trocar spell
                 }
                 break;
             }
             
             case 5: {
-                if(!(j.getPersonagem().verificaSpellsCheios()))
+                if(!(j.getPersonagem().verificaSpellsCheios())){
                      j.getPersonagem().setPoison(j.getPersonagem().getPoison()+1);
-                else{
+                     j.getPersonagem().setNspells(j.getPersonagem().getNspells()+1);
+                }else{
+                    spellTroca = 3;
                     //Pergunta se quer trocar spell
                 }
                 break;
             }
             
             case 6: {
-                if(!(j.getPersonagem().verificaSpellsCheios()))
+                if(!(j.getPersonagem().verificaSpellsCheios())){
                      j.getPersonagem().setHeal(j.getPersonagem().getHeal()+1);
-                else{
+                     j.getPersonagem().setNspells(j.getPersonagem().getNspells()+1);
+                }else{
+                    spellTroca = 4;
                     //Pergunta se quer trocar spell
                 }
                 break;
             }
         }
+        return spellTroca;
     }
     
     public void desenhaCarta(){

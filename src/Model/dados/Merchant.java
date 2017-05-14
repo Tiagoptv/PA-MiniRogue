@@ -107,11 +107,7 @@ public class Merchant extends Carta {
         System.out.println("+\t\t\t\t\t\t     +");
         System.out.println("+\t\t\t\t\t\t     +");
         System.out.println("+\t\t\t\t\t\t     +");
-<<<<<<< HEAD
-        System.out.println("+  BUY\t\t\t\t   SELL\t\t     +");
-=======
         System.out.println("+  BUY\t\t\t\t  SELL\t\t     +");
->>>>>>> 7184bc8e4b92573c59c41c6133aa135cd57a47c5
         System.out.println("+\033[32m  1$ Ration: +1 Food             3$  1 Armor Piece  \033[0m+");
         System.out.println("+\033[32m  1$ Health Potion: +1 HP        4$  Any 1 Spell    \033[0m+");
         System.out.println("+\033[32m  3$ Big Health Potion: +4 HP                       \033[0m+");
