@@ -26,39 +26,53 @@ public class Monster extends CartaMonstro {
         
     }
     
+    public Monster(Jogo j, int RewardXp){
+        nome = "Monster";
+        setLevel(j.getLevel());
+        setDmg(j.getLevel() * 2);
+        setHp(j.getArea() + Dado.lancaDado());
+        setRewardXp(RewardXp);   
+    }
+    
     public void recebeRecompensa(Jogo j){
         j.getPersonagem().setGold((j.getPersonagem().getXp()+getRewardXp()));
     }
     
+     
     public void desenhaCarta(){
         System.out.print("+");
-        for (int i = 0; i < 36; i++) {
+        for (int i = 0; i < 52; i++) {
             System.out.print("-");
         }
         System.out.println("+");
-        System.out.println("+\t\tMonster\t\t     +");
-        System.out.println("+\t\t\t\t     +");
-        System.out.println("+\t\t\t\t     +");
-        System.out.println("+\t\t\t\t     +");
-        System.out.println("+\t\t\t\t     +");
-        System.out.println("+\t\t\t\t     +");
-        System.out.println("+\t\t\t\t     +");
-        System.out.println("+\t\t\t\t     +");
-        System.out.println("+\t\t\t\t     +");
-        System.out.println("+\t\t\t\t     +");
-        System.out.println("+\t\t\t\t     +");
-        System.out.println("+\t\t\t\t     +");
-        System.out.println("+\t\t\t\t     +");
-        System.out.println("+  Level\t\tDMG  REWARD  +");
-        System.out.println("+\033[31m  1. Undead Soldier     2    1 XP   \033[0m+");
-        System.out.println("+\033[31m  2. Skeleton           4    1 XP   \033[0m+");
-        System.out.println("+\033[31m  3. Undead Knight      6    2 XP   \033[0m+");
-        System.out.println("+\033[31m  4. Serpent Knight     6    2 XP   \033[0m+");
-        System.out.println("+ \033[31m 5. Og's Sanctum Guard 6    2 XP   \033[0m+");
-        System.out.println("+\t\t\t\t     +");
-        System.out.println("+\t\t\t\t     +");
+        System.out.println("+\t\t     Boss Monster\t\t     +");
+        System.out.println("+\t\t\t\t\t\t     +");
+        System.out.println("+\t\t\t\t\t\t     +");
+        System.out.println("+\t\t\t\t\t\t     +");
+        System.out.println("+\t\t\t\t\t\t     +");
+        System.out.println("+\t\t\t\t\t\t     +");
+        System.out.println("+\t\t\t\t\t\t     +");
+        System.out.println("+\t\t\t\t\t\t     +");
+        System.out.println("+\t\t\t\t\t\t     +");
+        System.out.println("+\t\t\t\t\t\t     +");
+        System.out.println("+\t\t\t\t\t\t     +");
+        System.out.println("+\t\t\t\t\t\t     +");
+        System.out.println("+\t\t\t\t\t\t     +");
+        System.out.println("+  Level\t\t\tDMG  \tREWARD       +");
+        System.out.println("+\t\t\t\t\t\t     +");
+        System.out.println("+\033[31m  1. Undead Soldier     \t2    \t1 XP         \033[0m+");
+        System.out.println("+\t\t\t\t\t\t     +");
+        System.out.println("+\033[31m  2. Skeleton           \t4    \t1 XP         \033[0m+");
+        System.out.println("+\t\t\t\t\t\t     +");
+        System.out.println("+\033[31m  3. Undead Knight      \t6    \t2 XP         \033[0m+");
+        System.out.println("+\t\t\t\t\t\t     +");
+        System.out.println("+\033[31m  4. Serpent Knight     \t6    \t2 XP         \033[0m+");
+        System.out.println("+\t\t\t\t\t\t     +");
+        System.out.println("+ \033[31m 5. Og's Sanctum Guard \t6    \t2 XP         \033[0m+");
+        System.out.println("+\t\t\t\t\t\t     +");
+        System.out.println("+\t\t\t\t\t\t     +");
         System.out.print("+");
-        for (int i = 0; i < 36; i++) {
+        for (int i = 0; i < 52; i++) {
             System.out.print("-");
         }
         System.out.println("+");
