@@ -300,7 +300,8 @@ public class Jogo {
      
      /** Estado - Espera Ataque **/
      public IEstado lancaDados() {
-         Dado.lancaDadosDesbloqueados(nDadosDesbloqueados);
+         ArrayList<Integer> resultadoDados = new ArrayList<>();
+         resultadoDados = Dado.lancaDadosDesbloqueados(nDadosDesbloqueados);
          
          System.out.println("Tem de se dizer os valores dos dados \npara poder realizar o feats");
          
@@ -309,5 +310,18 @@ public class Jogo {
      
      
      /** Estado - Espera Feats **/
+     public IEstado aplicaFeats() {
+        //perguntar se quer utilizar um feat
+        //se sim que lançamento do dado quer remover
+        //remover e relançar dado
+        System.out.println("Falta aplicar feats");
+        
+        return estado;
+     }
+     
+     public IEstado somaAtaque() {
+         p.
+         return estado;
+     }
 
 }

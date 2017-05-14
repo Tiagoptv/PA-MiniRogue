@@ -88,6 +88,7 @@ public class EstadoAdapter implements IEstado{
         return this;
     }
 
+
     
 }
     

@@ -95,7 +95,8 @@ public class Personagem {
     
     
     
-    public void ataca(Jogo j){  
+
+    public void recolheAtaques(Jogo j){  
         ataques = Dado.lancaDadosDesbloqueados(j.getNdadosDesbloqueados());
     }
 
