@@ -23,10 +23,6 @@ public class EstadoAdapter implements IEstado{
     
     /***   Espera Inicio   ***/
     @Override
-    public IEstado comecarMenus() {
-        return this;
-    }
-    @Override
     public IEstado escolherDificuldade() {
         return this;
     }
@@ -85,6 +81,18 @@ public class EstadoAdapter implements IEstado{
     /*** Espera Feats ***/
     @Override
     public IEstado aplicaFeats() {
+        return this;
+    }
+
+    @Override
+    public IEstado ataca() {
+        return this;
+    }
+    
+    
+    /*** Espera Spell***/
+    @Override
+    public IEstado aplicaSpell(int spell) {
         return this;
     }
 

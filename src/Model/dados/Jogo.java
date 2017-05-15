@@ -1,8 +1,10 @@
 
 package Model.dados;
 
-//import Estado.EsperaCarta;
+import Estado.EsperaCarta;
 import Estado.IEstado;
+import UIConsola.Menu;
+import UIConsola.Informacoes;
 import java.io.BufferedReader;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -14,10 +16,8 @@ import java.io.ObjectOutputStream;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
-import UIConsola.*;
-import java.io.Serializable;
 
-public class Jogo implements Serializable{
+public class Jogo {
     private IEstado estado;
     private Personagem p;
     private ArrayList<Carta> cartas;
@@ -44,7 +44,7 @@ public class Jogo implements Serializable{
     public int getCartaAtualIndex(){return cartaAtual;}
     public Carta getCartaAtual(){return cartas.get(cartaAtual);}
     public int getNdadosDesbloqueados(){return nDadosDesbloqueados;}
-    public IEstado getEstado(){return estado;}
+    public IEstado getEstado() { return estado;}
     
     //setters
     public void setPersonagem(Personagem p){this.p = p;}
@@ -55,7 +55,7 @@ public class Jogo implements Serializable{
     public void setDerrotouMonstro(boolean derrotouMonstro){this.derrotouMonstro = derrotouMonstro;}
     public void setCartaAtual(int cartaAtual){this.cartaAtual = cartaAtual;}
     public void setNdadosDesbloqueados(int nDadosDesbloqueados){this.nDadosDesbloqueados =nDadosDesbloqueados;}
-    public void setEstado(IEstado estado){this.estado = estado;}
+    public void serEstado(IEstado e) {this.estado = e;}
     
     
     public boolean comBossMonster() {
@@ -69,54 +69,6 @@ public class Jogo implements Serializable{
             if(!comBossMonster())
                 return false;
         return true;
-    }
-    
-    
-    public void usaSpell(){
-        switch(/*pedeIndexSpell*/Dado.lancaDado()){
-            case 1: usaFireBallSpell();break;
-            
-            case 2: usaIceSpell();break;
-            
-            case 3: usaPoisonSpell();break;
-            
-            case 4: usaHealingSpell();break;
-        }
-    }
-    
-    public void usaFireBallSpell(){
-        CartaMonstro m = (CartaMonstro) getCartaAtual();
-        m.setHp(m.getHp()-8);
-    }
-    
-    public void usaIceSpell(){
-        CartaMonstro m = (CartaMonstro) getCartaAtual();
-        m.setCongelado(true);
-    }
-    
-    public void usaPoisonSpell(){
-        CartaMonstro m = (CartaMonstro) getCartaAtual();
-        m.setEnvenenado(true);
-    }
-    
-    public void usaHealingSpell(){
-        p.setHp(8);
-    }
-    
-    public void aplicaAtaqueAMonstro(){
-       int dmg = 0;
-       
-       for(int i : p.getAtaques())
-           dmg += i;
-       
-       CartaMonstro cm = (CartaMonstro)getCartaAtual();
-       
-       cm.setHp(cm.getHp()-dmg);
-    }
-    
-    public void aplicaAtaqueAPersonagem(){
-        CartaMonstro cm = (CartaMonstro)getCartaAtual();
-        getPersonagem().setHp((getPersonagem().getHp()-(cm.getDmg() - getPersonagem().getArmor()))); // retira os pontos da armor ao damage do boss e retira os pontos hp consoanto o dmg resultante
     }
     
     
@@ -205,22 +157,16 @@ public class Jogo implements Serializable{
         }
     }
     
-    public IEstado escolherDificuldade() {
+    public IEstado escolherDificuldade(int op) {
         
-        int op = Menu.ImprimeSelectDificuldade();
-        
-        if(op != 5)
-            setDificuldade(op);
+        setDificuldade(op);
 
-        return estado;
+        return comecarJogo();
     }
     
-    public IEstado escolherArea () {
+    public IEstado escolherArea (int op) {
         
-        int op = Menu.ImprimeSelectArea();
-        
-        if(op != 0)
-            setArea(op);
+        setArea(op);
         
         return estado;
     }
@@ -229,8 +175,8 @@ public class Jogo implements Serializable{
         aplicaDificuldade();  //System.out.println("Dificuldade aplicada!");
         baralhaCartas();      //System.out.println("Cartas Baralhadas!");
         
-        //estado = new EsperaCarta(this);
-        System.out.println("O Jogo vai agora comecar!");
+        estado = new EsperaCarta(this);
+        
         
         return estado ;
     }
@@ -274,7 +220,7 @@ public class Jogo implements Serializable{
         
         Resting rest = new Resting();
         
-        int op = Menu.OpcaoRestingCard();
+        int op = Menu.opcaoRestingCard();
         rest.descansa(this, op);
         
         System.out.println("falta passar para a proxima coluna \nou \nmudar de arena");
@@ -327,9 +273,11 @@ public class Jogo implements Serializable{
      
      /** Estado - Espera Ataque **/
      public IEstado lancaDados() {
-         ArrayList<Integer> resultadoDados = new ArrayList<>();
-         resultadoDados = Dado.lancaDadosDesbloqueados(nDadosDesbloqueados);
+         p.recolheAtaques(this);
          
+         for(int i : p.getAtaques())
+             //apresentar os dados
+             
          System.out.println("Tem de se dizer os valores dos dados \npara poder realizar o feats");
          
          return estado;
@@ -346,8 +294,15 @@ public class Jogo implements Serializable{
         return estado;
      }
      
-     public IEstado somaAtaque() {
-         //p.
+     public IEstado ataca() {
+         p.aplicaAtaque(this);
+         //return aplicaSpell();
+         return estado;
+     }
+     
+     /** Estado - Espera Spell **/
+     public IEstado aplicaSpell(int i) {
+         p.usaSpell(this, i);
          return estado;
      }
 

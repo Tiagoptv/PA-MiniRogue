@@ -11,7 +11,6 @@ import java.io.Serializable;
 public interface IEstado {
     
     /***   Espera Inicio   ***/
-    IEstado comecarMenus();
     IEstado escolherDificuldade();
     IEstado escolherArea();
     IEstado carregarJogo();
@@ -35,4 +34,8 @@ public interface IEstado {
     
     /*** Espera Feats ***/
     IEstado aplicaFeats();
+    IEstado ataca();
+    
+    /*** Espera Spell ***/
+    IEstado aplicaSpell(int spell);
 }
