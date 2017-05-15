@@ -306,7 +306,6 @@ public class Menu {
     public static void menuTrap(Jogo jogo) {
         int dado = Dado.lancaDado();
         //((EsperaCarta)estado).opcaoAleatoria();
-        
         int op = 0;
         
         do{
