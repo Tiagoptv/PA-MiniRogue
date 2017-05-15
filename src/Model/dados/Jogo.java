@@ -275,7 +275,7 @@ public class Jogo {
      
      public IEstado realizaVenda(int item) {
         Merchant m = new Merchant();
-        m.realizaVenda(this, item);
+        //m.realizaVenda(this, item);
         
         return resolveMerchant();
      }
@@ -305,14 +305,14 @@ public class Jogo {
      }
      
      public IEstado ataca() {
-         p.aplicaAtaque(this);
+         //p.aplicaAtaque(this);
          //return aplicaSpell();
          return estado;
      }
      
      /** Estado - Espera Spell **/
      public IEstado aplicaSpell(int i) {
-         p.usaSpell(this, i);
+         //p.usaSpell(this, i);
          return estado;
      }
 
