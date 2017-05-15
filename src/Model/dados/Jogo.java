@@ -258,7 +258,7 @@ public class Jogo {
      
      public IEstado realizaCompra(int item) {
         Merchant m = new Merchant();
-        m.realizaCompra(this, item);
+        //m.realizaCompra(this, item);
         
         return resolveMerchant();
      }

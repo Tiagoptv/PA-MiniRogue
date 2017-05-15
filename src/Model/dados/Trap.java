@@ -15,28 +15,6 @@ public class Trap extends Carta{
         nome = "Trap";
     }
     
-
-    public void opcaoAleatoria(Jogo j){
-        switch(Dado.lancaDado()){
-            case 1: j.getPersonagem().setFood((j.getPersonagem().getFood()-1));break;
-            
-            case 2: j.getPersonagem().setGold((j.getPersonagem().getGold()-1));break;
-            
-            case 3: j.getPersonagem().setArmor((j.getPersonagem().getArmor()-1));break;
-            
-            case 4: j.getPersonagem().setHp((j.getPersonagem().getHp()-1));break;
-                
-            case 5: j.getPersonagem().setXp((j.getPersonagem().getXp()-1));break;
-                
-            case 6:{
-                j.getPersonagem().setHp((j.getPersonagem().getHp()-2));
-                j.setArea(j.getArea()-1);//falta verificação
-                break;
-            }
-        }
-    }
-    
-    
     public boolean skillCheck(int rank){
         return Dado.lancaDado() <= rank;
     }
