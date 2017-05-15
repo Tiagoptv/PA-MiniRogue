@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package UIConsola;
+import Estado.EsperaEscolhaRest;
 import java.util.Scanner;
 import Model.dados.*;
 import java.io.IOException;
@@ -113,7 +114,42 @@ public class Menu {
         return op;
     }
     
-    public static int opcaoRestingCard() {
+    public static void imprimeSelecionaCarta(Jogo jogo) {
+        int op = 0;
+        do{
+            
+            System.out.print("+");
+            for (int i = 0; i < 43; i++) {
+                System.out.print("-");
+            }
+            System.out.println("+");
+            
+            String carta1 = ((Carta)jogo.getCartas().get(jogo.getCartaAtualIndex())).getNome();
+            String carta2 = null;
+            if(jogo.getCartaAtualIndex() == 1 || jogo.getCartaAtualIndex() == 4){
+                carta2 = ((Carta)jogo.getCartas().get(jogo.getCartaAtualIndex()+1)).getNome();
+                System.out.print("|\t\t\t\t\t    |\n|                  M E N U                  |\n|\t\t\t\t\t    |\n| \tSelecione a carta.\t    |\n|\t1. "+carta1+".    |\n| \t2. "+carta2+".\t\t\t    |\n|\t\t\t\t\t    |\n+");
+            }
+            else{ 
+                System.out.print("|\t\t\t\t\t    |\n|                  M E N U                  |\n|\t\t\t\t\t    |\n| \tSelecione a carta.\t    |\n|\t1. "+carta1+".    |\n|\t\t\t\t\t    |\n|\t\t\t\t\t    |\n+");
+            }
+            for (int i = 0; i < 43; i++) {
+                System.out.print("-");
+            }
+            System.out.println("+\n");
+            System.out.print("Carta: ");
+            Scanner sc = new Scanner(System.in);
+            while(( !sc.hasNextInt())) sc.next();
+            op = sc.nextInt();
+
+        }while( op >= 3 || op < 0);
+        
+        jogo.setCartaAtual(jogo.getCartaAtualIndex()+ op);
+        
+        jogo.proximoEstado();
+    }
+    
+    public static int opcaoRestingCard(Jogo jogo) {
         int op = 0;
         do{
             
@@ -261,6 +297,10 @@ public class Menu {
         }
         
         return op;
+        
+    }
+    
+    public static void menuAtaque() {
         
     }
 }

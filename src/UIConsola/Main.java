@@ -12,8 +12,8 @@ import Model.dados.*;
 public class Main {
     public static void main(String args[]) {
 
-        Menu.imprimePrincipal(new Jogo());
-
+        new UITexto (new Jogo()).corre();
+            
                 
     }
 }

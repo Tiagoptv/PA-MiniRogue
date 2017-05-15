@@ -23,17 +23,19 @@ public class UITexto {
         
         while(!sair) 
         {
-         
             IEstado estado = jogo.getEstado();
             
-            
             if( estado instanceof Estado.EsperaInicio)
-                
                 Menu.imprimePrincipal(jogo);
             
-            //if(estado instanceof Estado.EsperaCarta)
-                
-              //  Menu.
+            if(estado instanceof Estado.EsperaCarta)
+                Menu.imprimeSelecionaCarta(jogo);
+            
+            if(estado instanceof Estado.EsperaEscolhaRest)
+                Menu.opcaoRestingCard(jogo);
+            
+            //if(estado instanceof Estado.EsperaAtaque)
+                //Menu.;
         }
     }
     

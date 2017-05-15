@@ -1,10 +1,12 @@
 
 package Model.dados;
 
+import Estado.EsperaAtaque;
 import Estado.EsperaCarta;
+import Estado.EsperaEscolhaRest;
+import Estado.EsperaInicio;
+import Estado.EsperaTroca;
 import Estado.IEstado;
-import UIConsola.Menu;
-import UIConsola.Informacoes;
 import java.io.BufferedReader;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -32,6 +34,7 @@ public class Jogo {
         cartas = new ArrayList<Carta>();
         cartaAtual = 0;
         derrotouMonstro = false;
+        estado = new EsperaInicio(this);
     }
     
     //getters
@@ -55,7 +58,7 @@ public class Jogo {
     public void setDerrotouMonstro(boolean derrotouMonstro){this.derrotouMonstro = derrotouMonstro;}
     public void setCartaAtual(int cartaAtual){this.cartaAtual = cartaAtual;}
     public void setNdadosDesbloqueados(int nDadosDesbloqueados){this.nDadosDesbloqueados =nDadosDesbloqueados;}
-    public void serEstado(IEstado e) {this.estado = e;}
+    public void setEstado(IEstado e) {this.estado = e;}
     
     
     public boolean comBossMonster() {
@@ -70,7 +73,16 @@ public class Jogo {
                 return false;
         return true;
     }
-    
+    public void proximoEstado() {
+        if(getCartaAtual() instanceof Resting)
+            setEstado(new EsperaEscolhaRest(this));
+        else if(getCartaAtual() instanceof Merchant)
+            setEstado(new EsperaTroca(this));
+        else if(getCartaAtual() instanceof Treasure || getCartaAtual() instanceof Event )
+            resolveTresureEvent();
+        else if(getCartaAtual() instanceof Monster)
+            setEstado(new EsperaAtaque(this));
+    }
     
     /** Estado - Espera Inicio **/
     public void aplicaDificuldade(){
@@ -120,7 +132,7 @@ public class Jogo {
         cartasTemp.add(new Resting());
         
         int index;
-        for (int i = cartas.size()-1; i > 0; i--) {
+        for (int i = cartasTemp.size()-1; i > 0; i--) {
             index = (int)(Math.random() * i );
             this.cartas.add(cartasTemp.get(index));
             cartasTemp.remove(index);
@@ -177,7 +189,6 @@ public class Jogo {
         
         estado = new EsperaCarta(this);
         
-        
         return estado ;
     }
 
@@ -186,7 +197,7 @@ public class Jogo {
     /** Estado - Espera Carta **/
     public IEstado resolveTresureEvent() {
         
-        int dado = Dado.lancaDado();
+        /*int dado = Dado.lancaDado();
         Informacoes.resultadoDado(dado);
         
         if(getCartaAtual().getNome().equals("Treasure")) {
@@ -204,7 +215,7 @@ public class Jogo {
         //usar funçao maisCartas();
         
         //voltar ao EsperaCarta();
-        
+        */
         return estado;
     }
     
@@ -220,8 +231,8 @@ public class Jogo {
         
         Resting rest = new Resting();
         
-        int op = Menu.opcaoRestingCard();
-        rest.descansa(this, op);
+        //int op = Menu.opcaoRestingCard();
+        //rest.descansa(this, op);
         
         System.out.println("falta passar para a proxima coluna \nou \nmudar de arena");
         //usar funçao maisCartas();
@@ -235,7 +246,7 @@ public class Jogo {
      /** Estado - Espera Escolha Merchant **/
      public IEstado resolveMerchant() {
         
-        int op = Menu.realizarTroca();
+        /*int op = Menu.realizarTroca();
         switch(op) {
             case 1:
                 op = Menu.opcaoMerchant();
@@ -252,13 +263,13 @@ public class Jogo {
                 //voltar ao EsperaCarta();
                 return estado;
             
-            default: return estado;
-        }
+            default: 
+        }*/return estado;
     }
      
      public IEstado realizaCompra(int item) {
         Merchant m = new Merchant();
-        m.realizaCompra(this, item);
+        //m.realizaCompra(this, item);
         
         return resolveMerchant();
      }

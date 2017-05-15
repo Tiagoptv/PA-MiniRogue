@@ -9,7 +9,7 @@ package Model.dados;
  *
  * @author Diogo
  */
-abstract class Carta {
+public abstract class Carta {
     protected String nome;
     
     Carta(){
