@@ -41,7 +41,7 @@ public class UITexto {
                 Menu.;
             
             if(estado instanceof Estado.EsperaTroca)
-                Menu.realizarTroca();
+                Menu.realizarTroca(jogo);
         }
     }
     
