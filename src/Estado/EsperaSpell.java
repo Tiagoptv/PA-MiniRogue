@@ -13,7 +13,7 @@ public class EsperaSpell extends EstadoAdapter{
         super(jogo);
     }
     
-    public void usaSpell(int i){
+    public IEstado usaSpell(int i){
         switch(i){
             case 1: usaFireBallSpell();break;
             
@@ -23,25 +23,30 @@ public class EsperaSpell extends EstadoAdapter{
             
             case 4: usaHealingSpell();break;
         }
+        return this;
     }
     
-    public void usaFireBallSpell(){
+    public IEstado usaFireBallSpell(){
         CartaMonstro m = (CartaMonstro) jogo.getCartaAtual();
         m.setHp(m.getHp()-8);
+        return this;
     }
     
-    public void usaIceSpell(){
+    public IEstado usaIceSpell(){
         CartaMonstro m = (CartaMonstro) jogo.getCartaAtual();
         m.setCongelado(true);
+        return this;
     }
     
-    public void usaPoisonSpell(){
+    public IEstado usaPoisonSpell(){
         CartaMonstro m = (CartaMonstro) jogo.getCartaAtual();
         m.setEnvenenado(true);
+        return this;
     }
     
-    public void usaHealingSpell(){
+    public IEstado usaHealingSpell(){
         jogo.getPersonagem().setHp(8);
+        return this;
     }
     
     @Override
