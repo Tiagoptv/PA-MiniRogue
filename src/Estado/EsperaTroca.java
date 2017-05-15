@@ -13,7 +13,7 @@ public class EsperaTroca extends EstadoAdapter {
         super(jogo);
     }
     
-    public IEstado realizaVenda(Jogo j, int item){
+    public IEstado realizaVenda(int item){
         switch(item){
             case 1:{
                 jogo.getPersonagem().setArmor((jogo.getPersonagem().getArmor()-1));

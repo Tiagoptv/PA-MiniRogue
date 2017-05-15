@@ -39,6 +39,9 @@ public class UITexto {
                 
             if(estado instanceof Estado.EsperaAtaque)
                 Menu.;
+            
+            if(estado instanceof Estado.EsperaTroca)
+                Menu.realizarTroca();
         }
     }
     

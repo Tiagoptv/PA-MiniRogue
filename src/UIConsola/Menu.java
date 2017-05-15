@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 package UIConsola;
-import Estado.EsperaEscolhaRest;
+import Estado.*;
 import java.util.Scanner;
 import Model.dados.*;
 import java.io.IOException;
@@ -149,7 +149,7 @@ public class Menu {
         jogo.proximoEstado();
     }
     
-    public static int opcaoRestingCard(Jogo jogo) {
+    public static int opcaoRestingCard(Jogo j) {
         int op = 0;
         do{
             
@@ -170,34 +170,12 @@ public class Menu {
 
         }while( op >= 4 || op < 0);
         
-        return op;
-    }
-    
-    public static int opcaoMerchant() {
-        int op = 0;
-        do{
-            
-            System.out.print("+");
-            for (int i = 0; i < 43; i++) {
-                System.out.print("-");
-            }
-            System.out.println("+");
-            System.out.print("|\t\t\t\t\t    |\n|                  M E N U                  |\n|\t\t\t\t\t    |\n| \tIndique a opcao desejada. (1-7)\t    |\n|\t\t\t\t\t    |\n| \tBuy: 1-5\tSell: 6-7\t    |\n|\t\t\t\t\t    |\n|\t\t\t\t\t    |\n+");
-            for (int i = 0; i < 43; i++) {
-                System.out.print("-");
-            }
-            System.out.println("+\n");
-            System.out.print("Opcao: ");
-            Scanner sc = new Scanner(System.in);
-            while(( !sc.hasNextInt())) sc.next();
-            op = sc.nextInt();
-
-        }while( op >= 8 || op < 0);
+        ((EsperaEscolhaRest)j.getEstado()).descansa(op);
         
         return op;
     }
     
-    public static int realizarTroca() {
+    public static void realizarTroca(Jogo j) {
         int op = 0;
         do{
             
@@ -217,11 +195,33 @@ public class Menu {
             op = sc.nextInt();
 
         }while( op >= 3 || op < 0);
-        
-        return op;
+        if(op == 1){
+            do{
+            
+                System.out.print("+");
+                for (int i = 0; i < 43; i++) {
+                    System.out.print("-");
+                }
+                System.out.println("+");
+                System.out.print("|\t\t\t\t\t    |\n|                  M E N U                  |\n|\t\t\t\t\t    |\n| \tIntroduza o index to item. \t    |\n|\t\t\t\t\t    |\n| \t\t\t\t    |\n|\t\t\t\t\t    |\n|\t\t\t\t\t    |\n+");
+                for (int i = 0; i < 43; i++) {
+                    System.out.print("-");
+                }
+                System.out.println("+\n");
+                System.out.print("Opcao: ");
+                Scanner sc = new Scanner(System.in);
+                while(( !sc.hasNextInt())) sc.next();
+                op = sc.nextInt();
+
+            }while( op >= 8 || op < 0);
+            if(op < 5)
+                ((EsperaTroca)j.getEstado()).realizaCompra(op);
+            else
+                ((EsperaTroca)j.getEstado()).realizaVenda(op - 5);
+        }
     }
     
-    public static int utilizarFeat() {
+    public static void utilizarFeat(Jogo j) {
         int op = 0;
         do{
             
@@ -241,11 +241,50 @@ public class Menu {
             op = sc.nextInt();
 
         }while( op >= 3 || op < 0);
-        
-        return op;
+        if(op == 1){
+            do{
+                System.out.print("+");
+                for (int i = 0; i < 43; i++) {
+                    System.out.print("-");
+                }
+                System.out.println("+");
+                System.out.print("|\t\t\t\t\t    |\n|                  M E N U                  |\n|\t\t\t\t\t    |\n| \tO que pretende perder? \t    |\n|\t\t\t\t\t    |\n| \t  1. HP\t2. XP\t\t    |\n|\t\t\t\t\t    |\n|\t\t\t\t\t    |\n+");
+                for (int i = 0; i < 43; i++) {
+                    System.out.print("-");
+                }
+                System.out.println("+\n");
+                System.out.print("Opcao: ");
+                Scanner sc = new Scanner(System.in);
+                while(( !sc.hasNextInt())) sc.next();
+                op = sc.nextInt();
+
+            }while( op >= 3 || op < 0);
+            int op2;
+            do{
+                System.out.print("+");
+                for (int i = 0; i < 43; i++) {
+                    System.out.print("-");
+                }
+                System.out.println("+");
+                System.out.print("|\t\t\t\t\t    |\n|                  M E N U                  |\n|\t\t\t\t\t    |\n| \tQual o index to ataque a ser repetido? \t    |\n|\t\t\t\t\t    |\n| \t\t\t\t    |\n|\t\t\t\t\t    |\n|\t\t\t\t\t    |\n+");
+                for (int i = 0; i < 43; i++) {
+                    System.out.print("-");
+                }
+                System.out.println("+\n");
+                System.out.print("Opcao: ");
+                Scanner sc = new Scanner(System.in);
+                while(( !sc.hasNextInt())) sc.next();
+                op2 = sc.nextInt();
+
+            }while( op2 > j.getPersonagem().getAtaques().size() || op2 < 0);
+            if(op == 1)
+                j.getPersonagem().featsHp(op2);
+            if(op == 2)
+                j.getPersonagem().featsXp(op2);
+        }
     }
     
-    public static int utilizaSpell(Jogo j) {
+    public static void utilizaSpell(Jogo j) {
         int op = 0;
         do{
             
@@ -290,20 +329,17 @@ public class Menu {
                 }while( op >= 6 || op <= 0);
                 
                 if(op != 5)
-                    j.getPersonagem().usaSpell(j, op);
+                    ((EsperaSpell)j.getEstado()).usaSpell(op);
                 break;
                 
             case 2: break;
-        }
-        
-        return op;
-        
+        } 
     }
     
     public static void menuAtaque() {
         
     }
     
-    
+       
 }
 
