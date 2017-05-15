@@ -1,4 +1,3 @@
-
 package Model.dados;
 
 import Estado.EsperaAtaque;

@@ -15,7 +15,7 @@ public class EsperaCarta extends EstadoAdapter{
     }
     
     //Event
-    public void efeitoCartaEvent(int dado){
+    public IEstado efeitoCartaEvent(int dado){
         switch(dado){
             case 1: jogo.getPersonagem().setFood((jogo.getPersonagem().getFood()+1));break;
             
@@ -35,10 +35,11 @@ public class EsperaCarta extends EstadoAdapter{
                 break;
             }
         }
+        return this;
     }
     
     //Trap
-    public void opcaoAleatoria(){
+    public IEstado opcaoAleatoria(){
         switch(Dado.lancaDado()){
             case 1: jogo.getPersonagem().setFood((jogo.getPersonagem().getFood()-1));break;
             
@@ -57,18 +58,20 @@ public class EsperaCarta extends EstadoAdapter{
                 break;
             }
         }
+        return this;
     }
     
     //Treasure
-    public void recebeGold(){
+    public IEstado recebeGold(){
         if(jogo.getDerrotouMonstro()) {
             jogo.getPersonagem().setGold(jogo.getPersonagem().getGold()+2);
         } else {
             jogo.getPersonagem().setGold(jogo.getPersonagem().getGold()+1);
-        }  
+        }
+        return this;
     }
     
-    public void efeitoCartaTreasure(int dado){
+    public IEstado efeitoCartaTreasure(int dado){
         Treasure t = (Treasure)jogo.getCartaAtual();
         switch(dado){
             case 1: jogo.getPersonagem().setArmor(jogo.getPersonagem().getArmor()+1);break;
@@ -119,9 +122,10 @@ public class EsperaCarta extends EstadoAdapter{
                 break;
             }
         }
+        return this;
     }
     
-    public void trocaSpell(int opcao){
+    public IEstado trocaSpell(int opcao){
         //retira spell
         switch(opcao){
             case 1: jogo.getPersonagem().setFire(jogo.getPersonagem().getFire()-1);break;
@@ -146,6 +150,8 @@ public class EsperaCarta extends EstadoAdapter{
         }
         
         t.setSpellTroca(0);
+        
+        return this;
     }
     
     @Override

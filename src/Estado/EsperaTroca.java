@@ -13,7 +13,7 @@ public class EsperaTroca extends EstadoAdapter {
         super(jogo);
     }
     
-    public void realizaVenda(Jogo j, int item){
+    public IEstado realizaVenda(Jogo j, int item){
         switch(item){
             case 1:{
                 jogo.getPersonagem().setArmor((jogo.getPersonagem().getArmor()-1));
@@ -36,9 +36,10 @@ public class EsperaTroca extends EstadoAdapter {
                 break;
             }
         }
+        return this;
     }
     
-    public void realizaCompra(int item){
+    public IEstado realizaCompra(int item){
         switch(item){
             case 1:{
                 jogo.getPersonagem().setFood((jogo.getPersonagem().getFood()+1));
@@ -79,6 +80,7 @@ public class EsperaTroca extends EstadoAdapter {
                 break;
             }
         }
+        return this;
     }
     
     

@@ -14,7 +14,7 @@ public class EsperaAtaque extends EstadoAdapter {
         super(jogo);
     }
     
-    public void aplicaAtaqueAMonstro(){
+    public IEstado aplicaAtaqueAMonstro(){
        int dmg = 0;
        
        for(int i : jogo.getPersonagem().getAtaques())
@@ -23,6 +23,8 @@ public class EsperaAtaque extends EstadoAdapter {
        CartaMonstro cm = (CartaMonstro)jogo.getCartaAtual();
        
        cm.setHp(cm.getHp()-dmg);
+       
+       return this;
     }
     
     @Override

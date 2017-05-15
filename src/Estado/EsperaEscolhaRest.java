@@ -13,14 +13,14 @@ public class EsperaEscolhaRest extends EstadoAdapter{
         super(jogo);
     }
     
-    public void descansa(int op){
+    public IEstado descansa(int op){
         
         switch(op) {
             case 1: jogo.getPersonagem().setXp(jogo.getPersonagem().getXp()+1);break;
             case 2: jogo.getPersonagem().setFood(jogo.getPersonagem().getFood()+1); break;
             case 3: jogo.getPersonagem().setHp(jogo.getPersonagem().getHp()+2);break;
         }
-      
+      return this;
     }
     
     @Override
