@@ -35,10 +35,10 @@ public class UITexto {
                 Menu.opcaoRestingCard(jogo);
             
             if(estado instanceof Estado.EsperaCarta || jogo.getCartaAtual() instanceof Trap)
-                Menu.
+                Menu.menuTrap(jogo);
                 
             if(estado instanceof Estado.EsperaAtaque)
-                Menu.;
+                Menu.menuAtaque(jogo);
         }
     }
     

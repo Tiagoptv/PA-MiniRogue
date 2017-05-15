@@ -4,12 +4,14 @@
  * and open the template in the editor.
  */
 package UIConsola;
+import Estado.EsperaCarta;
 import Estado.EsperaEscolhaRest;
 import java.util.Scanner;
 import Model.dados.*;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import sun.net.www.content.text.plain;
 
 
 public class Menu {
@@ -218,6 +220,7 @@ public class Menu {
 
         }while( op >= 3 || op < 0);
         
+        
         return op;
     }
     
@@ -300,10 +303,59 @@ public class Menu {
         
     }
     
-    public static void menuAtaque() {
+    public static void menuTrap(Jogo jogo) {
+        int dado = Dado.lancaDado();
+        //((EsperaCarta)estado).opcaoAleatoria();
+        
+        int op = 0;
+        
+        do{
+            
+            System.out.print("+");
+            for (int i = 0; i < 43; i++) {
+                System.out.print("-");
+            }
+            System.out.println("+");
+            System.out.print("|\t\t\t\t\t    |\n|                  M E N U                  |\n|\t\t\t\t\t    |\n| \tSaiu o numero "+dado+"! \t    |\n|\t\t\t\t\t    |\n|\t\t\t\t\t    |\n|\t\t\t\t\t    |\n|\t\t\t\t\t    |\n+");
+            for (int i = 0; i < 43; i++) {
+                System.out.print("-");
+            }
+            System.out.println("+\n");
+            System.out.print("Opcao: ");
+            Scanner sc = new Scanner(System.in);
+            while(( !sc.hasNextInt())) sc.next();
+            op = sc.nextInt();
+
+        }while( op >= 3 || op < 0);
         
     }
     
+    public static void menuAtaque(Jogo jogo) {      
+        jogo.getPersonagem().recolheAtaques(jogo);
+        int op = 0;
+        do{
+            
+            System.out.print("+");
+            for (int i = 0; i < 43; i++) {
+                System.out.print("-");
+            }
+            System.out.println("+");    
+            System.out.print("|\t\t\t\t\t    |\n|                  M E N U                  |\n|\t\t\t\t\t    |\n| \tResultado dos dados: \t    |\n|\t");
+            for(int i : jogo.getPersonagem().getAtaques())        
+                System.out.print( i + "  ");
+            System.out.print("\t\t    |\n|\t\t\t\t\t    |\n|\t\t\t\t\t    |\n|\t\t\t\t\t    |\n+");
+            for (int i = 0; i < 43; i++) {
+                System.out.print("-");
+            }
+            System.out.println("+\n");
+            System.out.print("Opcao: ");
+            Scanner sc = new Scanner(System.in);
+            while(( !sc.hasNextInt())) sc.next();
+            op = sc.nextInt();
+
+        }while( op >= 3 || op < 0);
+        
+    }
     
 }
 
