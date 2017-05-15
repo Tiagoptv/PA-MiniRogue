@@ -4,7 +4,9 @@ package Model.dados;
 import Estado.EsperaAtaque;
 import Estado.EsperaCarta;
 import Estado.EsperaEscolhaRest;
+import Estado.EsperaFeats;
 import Estado.EsperaInicio;
+import Estado.EsperaSpell;
 import Estado.EsperaTroca;
 import Estado.IEstado;
 import java.io.BufferedReader;
@@ -80,8 +82,10 @@ public class Jogo {
             setEstado(new EsperaTroca(this));
         else if(getCartaAtual() instanceof Treasure || getCartaAtual() instanceof Event )
             resolveTresureEvent();
-        else if(getCartaAtual() instanceof Monster)
+        else if(getCartaAtual() instanceof Monster || getCartaAtual() instanceof BossMonster)
             setEstado(new EsperaAtaque(this));
+        else if(getCartaAtual() instanceof Trap)
+           ((EsperaCarta)estado).opcaoAleatoria();
     }
     
     /** Estado - Espera Inicio **/
@@ -276,7 +280,7 @@ public class Jogo {
      
      public IEstado realizaVenda(int item) {
         Merchant m = new Merchant();
-        m.realizaVenda(this, item);
+        estado.realizarVenda(item);
         
         return resolveMerchant();
      }
@@ -306,14 +310,14 @@ public class Jogo {
      }
      
      public IEstado ataca() {
-         p.aplicaAtaque(this);
+         ((EsperaAtaque)estado).aplicaAtaqueAMonstro();
          //return aplicaSpell();
          return estado;
      }
      
      /** Estado - Espera Spell **/
      public IEstado aplicaSpell(int i) {
-         p.usaSpell(this, i);
+         ((EsperaSpell)estado).aplicaSpell(i);
          return estado;
      }
 

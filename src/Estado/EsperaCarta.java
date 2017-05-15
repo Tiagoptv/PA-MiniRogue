@@ -38,7 +38,7 @@ public class EsperaCarta extends EstadoAdapter{
     }
     
     //Trap
-    public void opcaoAleatoria(){
+    public IEstado opcaoAleatoria(){
         switch(Dado.lancaDado()){
             case 1: jogo.getPersonagem().setFood((jogo.getPersonagem().getFood()-1));break;
             
@@ -57,6 +57,7 @@ public class EsperaCarta extends EstadoAdapter{
                 break;
             }
         }
+        return this;
     }
     
     //Treasure

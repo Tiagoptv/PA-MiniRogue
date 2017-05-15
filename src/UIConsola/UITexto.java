@@ -6,7 +6,7 @@
 package UIConsola;
 
 import Estado.IEstado;
-import Model.dados.Jogo;
+import Model.dados.*;
 
 
 public class UITexto {
@@ -34,8 +34,11 @@ public class UITexto {
             if(estado instanceof Estado.EsperaEscolhaRest)
                 Menu.opcaoRestingCard(jogo);
             
-            //if(estado instanceof Estado.EsperaAtaque)
-                //Menu.;
+            if(estado instanceof Estado.EsperaCarta || jogo.getCartaAtual() instanceof Trap)
+                Menu.
+                
+            if(estado instanceof Estado.EsperaAtaque)
+                Menu.;
         }
     }
     
