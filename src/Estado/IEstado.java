@@ -5,6 +5,8 @@
  */
 package Estado;
 
+import java.io.Serializable;
+
 
 public interface IEstado {
     

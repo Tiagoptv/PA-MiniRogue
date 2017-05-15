@@ -5,6 +5,7 @@
  */
 package Model.dados;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -12,7 +13,7 @@ import java.util.List;
  *
  * @author Diogo
  */
-public class Personagem {
+public class Personagem implements Serializable{
     private int hp, xp, armor, gold, food, rank, dmg;
     private int fire, ice, poison, heal, nspells;
     private ArrayList<Integer> ataques;
@@ -61,7 +62,7 @@ public class Personagem {
         else
             return false;
     }
-    
+
     public void usaSpell(Jogo j, int i){
         switch(i){
             case 1: usaFireBallSpell(j);break;
@@ -104,12 +105,12 @@ public class Personagem {
        
        cm.setHp(cm.getHp()-dmg);
     }
-
+    
     public void recolheAtaques(Jogo j){  
         ataques = Dado.lancaDadosDesbloqueados(j.getNdadosDesbloqueados());
     }
 
-    public void featsHp(Jogo j, int indexAtaque){
+    public void featsHp(int indexAtaque){
         setHp(getHp()-2);
         setFeats(true);
         int nDado, nAtaques = 0;
@@ -127,7 +128,7 @@ public class Personagem {
         }
     }
     
-    public void featsXp(Jogo j, int indexAtaque){
+    public void featsXp(int indexAtaque){
         setXp(getXp()-1);
         setFeats(true);
         int nDado, nAtaques = 0;

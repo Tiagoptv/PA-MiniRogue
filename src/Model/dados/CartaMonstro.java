@@ -28,8 +28,4 @@ abstract class CartaMonstro extends Carta{
     public void setHp(int hp){ this.hp = hp;}
     public void setCongelado(boolean congelado){this.congelado = congelado;}
     public void setEnvenenado(boolean envenenado){this.envenenado = envenenado;}
-    
-    public void ataca(Jogo j){
-        j.getPersonagem().setHp((j.getPersonagem().getHp()-(dmg - j.getPersonagem().getArmor()))); // retira os pontos da armor ao damage do boss e retira os pontos hp consoanto o dmg resultante
-    }
 }

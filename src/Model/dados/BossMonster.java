@@ -31,7 +31,7 @@ public class BossMonster extends CartaMonstro{
     
     public void recebeRecompensa(Jogo j){
         j.getPersonagem().setGold((j.getPersonagem().getGold()+getRewardGold()));
-        j.getPersonagem().setGold((j.getPersonagem().getXp()+getRewardXp()));
+        j.getPersonagem().setXp((j.getPersonagem().getXp()+getRewardXp()));
         
         for (int i = 0; i < j.getCartas().size();i++) {
             if( j.getCartas().get(i) instanceof BossMonster)
