@@ -4,14 +4,12 @@
  * and open the template in the editor.
  */
 package UIConsola;
-import Estado.EsperaCarta;
-import Estado.EsperaEscolhaRest;
+import Estado.*;
 import java.util.Scanner;
 import Model.dados.*;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import sun.net.www.content.text.plain;
 
 
 public class Menu {
@@ -293,7 +291,7 @@ public class Menu {
                 }while( op >= 6 || op <= 0);
                 
                 if(op != 5)
-                    j.getPersonagem().usaSpell(j, op);
+                    ((EsperaSpell)j.getEstado()).aplicaSpell(op);
                 break;
                 
             case 2: break;
@@ -329,8 +327,8 @@ public class Menu {
         
     }
     
-    public static void menuAtaque(Jogo jogo) {      
-        jogo.getPersonagem().recolheAtaques(jogo);
+    public static void menuAtaque(Jogo j) {      
+        j.getPersonagem().recolheAtaques(j);
         int op = 0;
         do{
             
@@ -340,7 +338,7 @@ public class Menu {
             }
             System.out.println("+");    
             System.out.print("|\t\t\t\t\t    |\n|                  M E N U                  |\n|\t\t\t\t\t    |\n| \tResultado dos dados: \t    |\n|\t");
-            for(int i : jogo.getPersonagem().getAtaques())        
+            for(int i : j.getPersonagem().getAtaques())        
                 System.out.print( i + "  ");
             System.out.print("\t\t    |\n|\t\t\t\t\t    |\n|\t\t\t\t\t    |\n|\t\t\t\t\t    |\n+");
             for (int i = 0; i < 43; i++) {
@@ -353,6 +351,9 @@ public class Menu {
             op = sc.nextInt();
 
         }while( op >= 3 || op < 0);
+        
+        utilizarFeat();
+        utilizaSpell(j);
         
     }
     
