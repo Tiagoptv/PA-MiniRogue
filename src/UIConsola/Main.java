@@ -7,14 +7,21 @@ package UIConsola;
 
 import java.io.IOException;
 import Model.dados.*;
+import java.io.FileNotFoundException;
 
 
 public class Main {
-    public static void main(String args[]) {
+    public static void main(String args[]) throws IOException, IOException, FileNotFoundException, ClassNotFoundException {
+        Jogo j = new Jogo();
+        
+        System.out.println(""+j.getArea());
+        j.setArea(12);
+        System.out.println(""+j.getArea());
+        j.guardarJogo();
+        
         Jogo jogo = new Jogo();
-
-        jogo.comecarMenus();
-
-                
+        System.out.println(""+jogo.getArea());
+        Menu.ImprimePrincipal(jogo);
+        System.out.println(""+jogo.getArea());
     }
 }

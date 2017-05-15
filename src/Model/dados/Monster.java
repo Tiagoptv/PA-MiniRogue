@@ -26,12 +26,12 @@ public class Monster extends CartaMonstro {
         
     }
     
-    public Monster(Jogo j, int RewardXp){
+    public Monster(Jogo j, int rewardXp){
         nome = "Monster";
         setLevel(j.getLevel());
         setDmg(j.getLevel() * 2);
         setHp(j.getArea() + Dado.lancaDado());
-        setRewardXp(RewardXp);   
+        setRewardXp(rewardXp);   
     }
     
     public void recebeRecompensa(Jogo j){

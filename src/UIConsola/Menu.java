@@ -4,16 +4,15 @@
  * and open the template in the editor.
  */
 package UIConsola;
-import java.io.BufferedReader;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.IOException;
 import java.util.Scanner;
 import Model.dados.*;
+import Estado.*;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 
 
 public class Menu {
-    public static int ImprimePrincipal(){
+    public static void ImprimePrincipal(Jogo j) throws IOException, FileNotFoundException, ClassNotFoundException{
         int op = 0;
         do{
             
@@ -34,9 +33,22 @@ public class Menu {
 
         }while( op >= 4 || op <= 0);
         
-        return op;
+        switch(op){
+            case 1:{
+                j.escolherArea();
+                j.escolherDificuldade();
+                j.setEstado(j.comecarJogo()); 
+                break;
+            }
+            
+            case 2: {
+                j = Jogo.carregaJogo();
+                break;
+            }
+            case 3: break;
+        }
     }
-
+        
     public static int ImprimeConfiguracoesInicio() {
         int op = 0;
         do{
@@ -192,7 +204,7 @@ public class Menu {
                 System.out.print("-");
             }
             System.out.println("+");
-            System.out.print("|\t\t\t\t\t    |\n|                  M E N U                  |\n|\t\t\t\t\t    |\n| \tPretende utilizar uma troca? \t    |\n|\t\t\t\t\t    |\n| \t  1. Sim\t2. Nao\t\t    |\n|\t\t\t\t\t    |\n|\t\t\t\t\t    |\n+");
+            System.out.print("|\t\t\t\t\t    |\n|                  M E N U                  |\n|\t\t\t\t\t    |\n| \tPretende realizar um feats? \t    |\n|\t\t\t\t\t    |\n| \t  1. Sim\t2. Nao\t\t    |\n|\t\t\t\t\t    |\n|\t\t\t\t\t    |\n+");
             for (int i = 0; i < 43; i++) {
                 System.out.print("-");
             }
