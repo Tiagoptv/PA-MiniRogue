@@ -12,32 +12,6 @@ public class Merchant extends Carta {
         nome = "Merchant";
     }
     
-    
-    public void realizaVenda(Jogo j, int item){
-        switch(item/*pedeIndexItem*/){
-            case 1:{
-                j.getPersonagem().setArmor((j.getPersonagem().getArmor()-1));
-                j.getPersonagem().setGold((j.getPersonagem().getGold()+3));
-                break;
-            }
-            
-            case 2:{
-                switch((int)(Math.random()*4) + 1/*pedeIndexSpell*/){
-                    case 1: j.getPersonagem().setFire((j.getPersonagem().getFire()-1));break;
-                    
-                    case 2: j.getPersonagem().setIce((j.getPersonagem().getIce()-1));break;
-                    
-                    case 3: j.getPersonagem().setPoison((j.getPersonagem().getPoison()-1));break;
-                    
-                    case 4: j.getPersonagem().setHeal((j.getPersonagem().getHeal()-1));break;
-                }
-                
-                j.getPersonagem().setGold((j.getPersonagem().getGold()+4));
-                break;
-            }
-        }
-    }
-    
     public void desenhaCarta(){
         System.out.print("+");
         for (int i = 0; i < 52; i++) {

@@ -11,28 +11,6 @@ public class Event extends Carta{
         nome = "Event";
     }
     
-    public void efeitoCarta(Jogo j, int dado){
-        switch(dado){
-            case 1: j.getPersonagem().setFood((j.getPersonagem().getFood()+1));break;
-            
-            case 2: j.getPersonagem().setHp((j.getPersonagem().getHp()+2));break;
-            
-            case 3: j.getPersonagem().setGold((j.getPersonagem().getGold()+2));break;
-            
-            case 4: j.getPersonagem().setXp((j.getPersonagem().getXp()+1));break;
-                
-            case 5: j.getPersonagem().setArmor((j.getPersonagem().getArmor()+1));break;
-                
-            case 6: {
-                for (int i = 0; i < j.getCartas().size();i++) {
-                    if( j.getCartas().get(i) instanceof Event)
-                        j.getCartas().set(i, new Monster(j));
-                }
-                break;
-            }
-        }
-    }
-    
     public void desenhaCarta(){
         System.out.print("+");
         for (int i = 0; i < 52; i++) {

@@ -62,49 +62,6 @@ public class Personagem implements Serializable{
         else
             return false;
     }
-
-    public void usaSpell(Jogo j, int i){
-        switch(i){
-            case 1: usaFireBallSpell(j);break;
-            
-            case 2: usaIceSpell(j);break;
-            
-            case 3: usaPoisonSpell(j);break;
-            
-            case 4: usaHealingSpell(j);break;
-        }
-    }
-    
-    public void usaFireBallSpell(Jogo j){
-        CartaMonstro m = (CartaMonstro) j.getCartaAtual();
-        m.setHp(m.getHp()-8);
-    }
-    
-    public void usaIceSpell(Jogo j){
-        CartaMonstro m = (CartaMonstro) j.getCartaAtual();
-        m.setCongelado(true);
-    }
-    
-    public void usaPoisonSpell(Jogo j){
-        CartaMonstro m = (CartaMonstro) j.getCartaAtual();
-        m.setEnvenenado(true);
-    }
-    
-    public void usaHealingSpell(Jogo j){
-        setHp(8);
-    }
-    
-    
-    public void aplicaAtaque(Jogo j){
-       int dmg = 0;
-       
-       for(int i : ataques)
-           dmg += i;
-       
-       CartaMonstro cm = (CartaMonstro)j.getCartaAtual();
-       
-       cm.setHp(cm.getHp()-dmg);
-    }
     
     public void recolheAtaques(Jogo j){  
         ataques = Dado.lancaDadosDesbloqueados(j.getNdadosDesbloqueados());
