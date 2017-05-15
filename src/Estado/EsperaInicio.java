@@ -15,11 +15,6 @@ public class EsperaInicio extends EstadoAdapter {
     }
 
     @Override
-    public IEstado comecarMenus() {
-        return getJogo().comecarMenus();
-    }
-
-    @Override
     public IEstado escolherArea() {
         return this;//getJogo().pedirArea();
     }

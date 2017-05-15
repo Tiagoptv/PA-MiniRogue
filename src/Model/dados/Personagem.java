@@ -62,8 +62,8 @@ public class Personagem {
             return false;
     }
     
-    public void usaSpell(Jogo j){
-        switch(/*pedeIndexSpell*/Dado.lancaDado()){
+    public void usaSpell(Jogo j, int i){
+        switch(i){
             case 1: usaFireBallSpell(j);break;
             
             case 2: usaIceSpell(j);break;
