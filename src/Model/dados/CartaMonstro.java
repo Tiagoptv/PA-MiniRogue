@@ -6,7 +6,7 @@
 package Model.dados;
 
 
-abstract class CartaMonstro extends Carta{
+public abstract class CartaMonstro extends Carta{
     private int level, dmg, rewardXp, hp;
     private boolean congelado, envenenado;
     

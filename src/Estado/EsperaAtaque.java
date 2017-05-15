@@ -5,13 +5,24 @@
  */
 package Estado;
 
-import Model.dados.Jogo;
+import Model.dados.*;
 
 
 public class EsperaAtaque extends EstadoAdapter {
     
     public EsperaAtaque(Jogo jogo) {
         super(jogo);
+    }
+    
+    public void aplicaAtaqueAMonstro(){
+       int dmg = 0;
+       
+       for(int i : jogo.getPersonagem().getAtaques())
+           dmg += i;
+       
+       CartaMonstro cm = (CartaMonstro)jogo.getCartaAtual();
+       
+       cm.setHp(cm.getHp()-dmg);
     }
     
     @Override

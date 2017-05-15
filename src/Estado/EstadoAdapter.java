@@ -5,11 +5,11 @@
  */
 package Estado;
 
-import Model.dados.Jogo;
+import Model.dados.*;
 
 public class EstadoAdapter implements IEstado{
 
-    private Jogo jogo;
+    protected Jogo jogo;
     public EstadoAdapter(Jogo jogo){
         this.jogo = jogo;
     }
