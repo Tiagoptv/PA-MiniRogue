@@ -11,8 +11,8 @@ import java.io.Serializable;
 public interface IEstado {
     
     /***   Espera Inicio   ***/
-    IEstado escolherDificuldade();
-    IEstado escolherArea();
+    IEstado escolherDificuldade(int op);
+    IEstado escolherArea(int op);
     IEstado carregarJogo();
     IEstado comecarJogo();
     

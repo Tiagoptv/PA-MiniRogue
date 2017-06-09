@@ -177,7 +177,7 @@ public class Jogo {
         
         setDificuldade(op);
 
-        return comecarJogo();
+        return estado;
     }
     
     public IEstado escolherArea (int op) {

@@ -38,10 +38,10 @@ public class UITexto {
                 //Menu.
                 
             if(estado instanceof Estado.EsperaAtaque)
-                //Menu.;
+                ;//Menu.;
             
-            if(estado instanceof Estado.EsperaTroca)
-                Menu.realizarTroca(jogo);
+            /*if(estado instanceof Estado.EsperaTroca)
+                Menu.realizarTroca(jogo);*/
         }
     }
     

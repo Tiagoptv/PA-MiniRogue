@@ -23,11 +23,11 @@ public class EstadoAdapter implements IEstado{
     
     /***   Espera Inicio   ***/
     @Override
-    public IEstado escolherDificuldade() {
+    public IEstado escolherDificuldade(int op) {
         return this;
     }
     @Override
-    public IEstado escolherArea() {
+    public IEstado escolherArea(int op) {
         return this;
     }
     @Override
