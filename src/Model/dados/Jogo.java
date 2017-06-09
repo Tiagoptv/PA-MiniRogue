@@ -188,7 +188,7 @@ public class Jogo {
     }
     
     public IEstado comecarJogo() {
-        aplicaDificuldade();  //System.out.println("Dificuldade aplicada!");
+        //aplicaDificuldade();  //System.out.println("Dificuldade aplicada!");
         baralhaCartas();      //System.out.println("Cartas Baralhadas!");
         
         estado = new EsperaCarta(this);

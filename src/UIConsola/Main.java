@@ -16,8 +16,8 @@ public class Main {
 
             //new UITexto (new Jogo()).corre();
             //new Configuracoes();
-            //new PanelMenu(new Modelo(new Jogo()));
-            new UIJogo(new Modelo(new Jogo()));
+            new PanelMenu(new Modelo(new Jogo()));
+            //new UIJogo(new Modelo(new Jogo()));
             //new TabuleiroFrame();
                 
     }

@@ -13,8 +13,11 @@ import java.awt.FlowLayout;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
 import java.util.Observable;
 import java.util.Observer;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -33,7 +36,7 @@ public class PanelMenu  extends JFrame implements Observer{
     
  
     public PanelMenu(Modelo modelo) {
-        this(modelo, 750,150, 530, 780);
+        this(modelo, 750,150, 398, 600);
     }
     
     public PanelMenu(Modelo modelo, int x, int y, int largura, int altura) {
@@ -75,10 +78,6 @@ public class PanelMenu  extends JFrame implements Observer{
         exit = new JButton("Exit");
         exit.setForeground(Color.black); //cor das letras do botao
         exit.setBackground(Color.white); //cor do background do botao
-        
-        fundo.add(start);
-        fundo.add(load);
-        fundo.add(exit);
         
         painel = new JPanel();
         painel.setBackground(Color.white);
@@ -125,7 +124,13 @@ public class PanelMenu  extends JFrame implements Observer{
 
         @Override
         public void actionPerformed(ActionEvent e) {
-            painel.setBackground(Color.blue);
+            try {
+                modelo.getJogo().carregaJogo();
+            } catch (IOException ex) {
+                Logger.getLogger(PanelMenu.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (ClassNotFoundException ex) {
+                Logger.getLogger(PanelMenu.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
 
     }

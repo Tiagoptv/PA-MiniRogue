@@ -47,7 +47,7 @@ public class Configuracoes extends JFrame implements Constantes{
 
     
     public Configuracoes (Modelo modelo) {
-        this(modelo, 750,150, 530, 780);
+        this(modelo, 750,150, 398, 600);
     }
     
     public Configuracoes(Modelo modelo,int x, int y, int largura, int altura) {
@@ -122,9 +122,7 @@ public class Configuracoes extends JFrame implements Constantes{
         
         Box box = Box.createVerticalBox();
         box.setBorder(new LineBorder(Color.RED, 2));
-        //box.add(Box.createVerticalGlue());
-        box.add(Box.createVerticalStrut(200));
-        //box.add(Box.createHorizontalStrut(30));
+        box.add(Box.createVerticalStrut(150));
         box.add(dificuldade);
         box.add(casual);
         box.add(normal);
@@ -138,16 +136,10 @@ public class Configuracoes extends JFrame implements Constantes{
         box.add(Box.createHorizontalStrut(60));
         box.add(Box.createVerticalStrut(250));
 
-        box.setAlignmentX(CENTER_ALIGNMENT);
-
-        
         //Defina o layout desta frame como sendo tipo BorderLayout
         cp.setLayout(new BorderLayout());
           
-        //cp.setMaximumSize(WIDTH);
-        
         //Acresente o painel no centro da frame        
-        //cp.add(painel, BorderLayout.CENTER);
         cp.add(box, BorderLayout.CENTER);
         
         
@@ -181,8 +173,6 @@ public class Configuracoes extends JFrame implements Constantes{
                             case "Impossible":
                                 modelo.escolherDificuldade(4);
                                 break;
-    
-
                         }
                         break;
                     }
