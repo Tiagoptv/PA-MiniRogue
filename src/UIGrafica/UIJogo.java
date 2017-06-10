@@ -34,9 +34,9 @@ public class UIJogo extends JFrame implements Observer {
 
     private Modelo modelo;
     protected String path;
-    
     private GridBagConstraints c;
-    private JPanel dungeon, south;
+    public JPanel dungeon, south;
+    public JLabel estadoLabel;
     private Container cp;
     private JButton guardar;
     
@@ -68,6 +68,7 @@ public class UIJogo extends JFrame implements Observer {
 
         dungeon = new JPanel(new GridBagLayout());
         south = new JPanel(new FlowLayout(FlowLayout.CENTER, 10, 0));
+        estadoLabel = new JLabel("qualquercoisita");
         criaDungeon();
         criaInfoArea();
         //mostraCarta();
@@ -78,6 +79,7 @@ public class UIJogo extends JFrame implements Observer {
         cp = getContentPane();
         cp.setLayout(new BorderLayout());
   
+        cp.add(estadoLabel, BorderLayout.LINE_END);
         cp.add(dungeon, BorderLayout.NORTH);
         cp.add(south,BorderLayout.SOUTH);
            
@@ -171,94 +173,9 @@ public class UIJogo extends JFrame implements Observer {
         
         south.add(cartaInfo);
         south.add(cartaDungeon);
-        south.add(guardar);
-        
-        
+        south.add(guardar);   
     }
-
-    /*
-    private void mostraCarta() {
-        
-        CartaGrafica carta;
-        int gridx = 0, gridy = 0, ipadx = 0, ipady= 0;
-        
-        int nCarta = modelo.getJogo().getCartaAtualIndex();
-
-        switch(modelo.getJogo().getCartaAtual().getNome()) {
-            case "Trap":
-                carta = new TrapGrafica(this, modelo);
-                break;
-            case "Treasure":
-                carta = new TreasureGrafica(this, modelo);
-                break;
-            case "Monster":
-                carta = new MonsterGrafica(this, modelo);
-                break;
-            case "BossMonster":
-                carta = new BossMonsterGrafica(this, modelo);
-                break;
-            case "Event":
-                carta = new EventGrafica(this, modelo);
-                break;
-            case "Merchant":
-                carta = new MerchantGrafica(this, modelo);
-                break;
-            case "Resting":
-                carta = new RestingGrafica(this, modelo);
-                break;
-            default:
-                break;      
-        }
-        
-        switch (nCarta) {
-                    case 0:
-                        gridx=0;
-                        gridy=1;
-                        ipadx = 10;
-                        ipady = 0;
-                        break;
-                    case 1:
-                        gridx=1;
-                        gridy=0;
-                        ipadx = 0;
-                        ipady = 5;
-                        break;
-                    case 2:
-                        gridx=1;
-                        gridy=2;
-                        ipadx = 0;
-                        ipady = 0;
-                        break;
-                    case 3:
-                        gridx=2;
-                        gridy=1;
-                        ipadx = 10;
-                        ipady = 0;
-                        break;
-                    case 4:
-                        gridx=3;
-                        gridy=0;
-                        ipadx = 0;
-                        ipady = 5;
-                        break;
-                    case 5:
-                        gridx=3;
-                        gridy=2;
-                        ipadx = 0;
-                        ipady = 0;
-                        break;
-                    case 6:
-                        gridx=4;
-                        gridy=1;
-                        ipadx = 10;
-                        ipady = 5;
-                        break;
-                    default:
-                        break;
-                }
-        
-    }
-    */
+    
     protected void registarListeners(){
         guardar.addActionListener(new ActionListener() {
             @Override
@@ -275,6 +192,7 @@ public class UIJogo extends JFrame implements Observer {
     
     @Override
     public void update(Observable o, Object arg) {
+        estadoLabel.setText(""+modelo.getJogo().getEstado().toString());
         repaint();
     }
 

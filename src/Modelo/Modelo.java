@@ -5,6 +5,7 @@
  */
 package Modelo;
 
+import Estado.EsperaCarta;
 import Model.dados.Carta;
 import Model.dados.Jogo;
 import Model.dados.Treasure;
@@ -74,7 +75,19 @@ public class Modelo extends Observable
         setChanged();
         notifyObservers();
     }
-
+    
+    public void realizaCompra(int id) {
+        jogo.realizaCompra(id);
+        setChanged();
+        notifyObservers();
+        
+    }
+    
+    public void realizaVenda(int id) {
+        jogo.realizaVenda(id);
+        setChanged();
+        notifyObservers();
+    }
 
     public Boolean isVisivelCartaByClass(String cartaClass) {
         for (Carta carta : jogo.getCartas()) {
@@ -87,6 +100,21 @@ public class Modelo extends Observable
         }
         return false;
     }
+
+    public void escolherCarta(int id) {
+        jogo.getEstado().escolheCarta(id);
+        setChanged();
+        notifyObservers();
+    }
+
+    public void mercadoriaPassar() {
+        jogo.setEstado(new EsperaCarta(jogo));
+        jogo.virarCartas();
+        setChanged();
+        notifyObservers();
+    }
+
+
 
     
     

@@ -14,6 +14,17 @@ public class EsperaCarta extends EstadoAdapter{
         super(jogo);
     }
     
+    public IEstado escolheCarta(int id) {
+        
+        if( !jogo.getCartaPorIndex(id).getVisivel() )
+            return this;
+        else if(jogo.getCartaAtualIndex() <= id){
+            jogo.setCartaAtual(id);
+            jogo.setEstado(jogo.proximoEstado());
+        }
+        return this;
+    }
+    
     //Event
     public IEstado efeitoCartaEvent(int dado){
         switch(dado){
@@ -58,6 +69,7 @@ public class EsperaCarta extends EstadoAdapter{
                 break;
             }
         }
+        jogo.virarCartas();
         return this;
     }
     

@@ -56,7 +56,9 @@ public class CartaGrafica extends JPanel
             @Override
             public void mousePressed(MouseEvent e) 
             {
-                
+                modelo.escolherCarta(id);
+                revalidate();
+                repaint();
             }
         });
     }    

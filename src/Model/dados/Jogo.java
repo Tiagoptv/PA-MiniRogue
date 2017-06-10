@@ -76,17 +76,18 @@ public class Jogo implements Serializable{
                 return false;
         return true;
     }
-    public void proximoEstado() {
+    public IEstado proximoEstado() {
         if(getCartaAtual() instanceof Resting)
-            setEstado(new EsperaEscolhaRest(this));
+             return new EsperaEscolhaRest(this);
         else if(getCartaAtual() instanceof Merchant)
-            setEstado(new EsperaTroca(this));
+            return new EsperaTroca(this);
         else if(getCartaAtual() instanceof Treasure || getCartaAtual() instanceof Event )
-            resolveTresureEvent();
+            return resolveTresureEvent();
         else if(getCartaAtual() instanceof Monster || getCartaAtual() instanceof BossMonster)
-            setEstado(new EsperaAtaque(this));
+            return new EsperaAtaque(this);
         else if(getCartaAtual() instanceof Trap)
            ((EsperaCarta)estado).opcaoAleatoria();
+        return estado;
     }
     
     /** Estado - Espera Inicio **/
@@ -145,6 +146,7 @@ public class Jogo implements Serializable{
         this.cartas.add(cartasTemp.get(0));
         if(comBossMonster())
             this.cartas.add(new BossMonster(this));
+        cartas.get(0).setVisivel(true);
     }
     
     public void guardarJogo() throws FileNotFoundException, IOException {
@@ -191,7 +193,6 @@ public class Jogo implements Serializable{
     public IEstado comecarJogo() {
         //aplicaDificuldade();  //System.out.println("Dificuldade aplicada!");
         baralhaCartas();      //System.out.println("Cartas Baralhadas!");
-        getCartas().get(3).setVisivel(true);
         estado = new EsperaCarta(this);
         
         return estado ;
@@ -202,26 +203,24 @@ public class Jogo implements Serializable{
     /** Estado - Espera Carta **/
     public IEstado resolveTresureEvent() {
         
-        /*int dado = Dado.lancaDado();
-        Informacoes.resultadoDado(dado);
+        int dado = Dado.lancaDado();
         
-        if(getCartaAtual().getNome().equals("Treasure")) {
-            Treasure tesouro = new Treasure();
-            tesouro.recebeGold(this);
-            tesouro.efeitoCarta(this, dado);
+        if(getCartaAtual() instanceof  Treasure) {
+            Treasure tesouro = (Treasure) getCartaAtual();
+            //tesouro.recebeGold(this);
+            //tesouro.efeitoCarta(this, dado);
         }
         
-        if(getCartaAtual().getNome().equals("Event")) {
+        if(getCartaAtual() instanceof  Event) {
             Event evento = new Event();
-            evento.efeitoCarta(this, dado);
+            //evento.efeitoCarta(this, dado);
         }
         
-        System.out.println("falta passar para a proxima coluna \nou \nmudar de arena");
         //usar funçao maisCartas();
         
         //voltar ao EsperaCarta();
-        */
-        return estado;
+        virarCartas();
+        return new EsperaCarta(this);
     }
     
     public IEstado monstroEncontrado() {
@@ -325,6 +324,34 @@ public class Jogo implements Serializable{
     public Carta getCartaPorIndex(Integer id) {
         Carta carta = cartas.get(id);
         return cartas.get(id);
+    }
+
+    public void virarCartas() {
+        if(cartaAtual == 0) {
+            cartas.get(1).setVisivel(true);
+            cartas.get(2).setVisivel(true);
+        } else if(cartaAtual == 1 || cartaAtual == 2) {
+            cartas.get(3).setVisivel(true);
+        } else if(cartaAtual == 3) {
+            cartas.get(4).setVisivel(true);
+            cartas.get(5).setVisivel(true);
+        } else 
+            if( cartas.size() ==  6){
+                proximaArea();
+            }
+            else{
+                if(cartaAtual == 4 || cartaAtual == 5) {
+                    cartas.get(6).setVisivel(true);
+                }
+                else{
+                    proximaArea();
+                }
+            }
+    }
+    private void proximaArea(){
+        area++;
+        cartaAtual = 0;
+        baralhaCartas();
     }
 
 }

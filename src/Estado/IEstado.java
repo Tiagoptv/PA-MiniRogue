@@ -17,6 +17,7 @@ public interface IEstado  {
     IEstado comecarJogo();
     
     /*** Espera Carta ***/
+    IEstado escolheCarta(int id);
     IEstado resolveTresureEvent();
     IEstado monstroEncontrado();
     

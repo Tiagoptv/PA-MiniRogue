@@ -97,6 +97,11 @@ public class EstadoAdapter implements IEstado, Serializable{
         return this;
     }
 
+    @Override
+    public IEstado escolheCarta(int id) {
+        return this;
+    }
+
 
     
 }
