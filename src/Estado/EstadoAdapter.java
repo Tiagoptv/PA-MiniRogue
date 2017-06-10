@@ -6,8 +6,9 @@
 package Estado;
 
 import Model.dados.*;
+import java.io.Serializable;
 
-public class EstadoAdapter implements IEstado{
+public class EstadoAdapter implements IEstado, Serializable{
 
     protected Jogo jogo;
     public EstadoAdapter(Jogo jogo){

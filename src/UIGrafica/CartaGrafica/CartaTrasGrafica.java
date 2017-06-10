@@ -16,10 +16,10 @@ import javax.swing.JLabel;
 
 public class CartaTrasGrafica extends CartaGrafica {
     
-    
-    public CartaTrasGrafica(UIJogo  f, Modelo m) {
-        
-        super(f, m);
+    private Integer id;
+    public CartaTrasGrafica(UIJogo  f, Modelo m, int id) {
+        super(f, m, id);
+        this.id = id;
         BufferedImage imagem=null;
         try {        
             

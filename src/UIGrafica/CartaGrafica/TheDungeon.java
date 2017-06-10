@@ -18,8 +18,7 @@ public class TheDungeon extends CartaGrafica {
     
     public TheDungeon(UIJogo  f, Modelo m) {
         
-        super(f, m);
-        BufferedImage imagem=null;
+        super(f, m, 0);
         try {        
             
             imagem =  ImageIO.read(new File(System.getProperty("user.dir")+"\\Imagens\\TheDungeon.PNG"));

@@ -124,13 +124,9 @@ public class PanelMenu  extends JFrame implements Observer{
 
         @Override
         public void actionPerformed(ActionEvent e) {
-            try {
-                modelo.getJogo().carregaJogo();
-            } catch (IOException ex) {
-                Logger.getLogger(PanelMenu.class.getName()).log(Level.SEVERE, null, ex);
-            } catch (ClassNotFoundException ex) {
-                Logger.getLogger(PanelMenu.class.getName()).log(Level.SEVERE, null, ex);
-            }
+            modelo.carregarJogo();
+            new UIJogo(modelo);
+            setVisible(false);
         }
 
     }

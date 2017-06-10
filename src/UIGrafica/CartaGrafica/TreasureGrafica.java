@@ -1,8 +1,11 @@
 
 package UIGrafica.CartaGrafica;
 
+import Model.dados.Carta;
+import Model.dados.Treasure;
 import Modelo.Modelo;
 import UIGrafica.UIJogo;
+import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.image.BufferedImage;
 import java.io.File;
@@ -17,10 +20,8 @@ import javax.swing.JLabel;
 public class TreasureGrafica extends CartaGrafica {
     
     
-    public TreasureGrafica(UIJogo  f, Modelo m) {
-        
-        super(f, m);
-        BufferedImage imagem=null;
+    public TreasureGrafica(UIJogo  f, Modelo m, int id) {
+        super(f, m, id);
         try {        
             
             imagem =  ImageIO.read(new File(System.getProperty("user.dir")+"\\Imagens\\Treasure.PNG"));
@@ -31,8 +32,15 @@ public class TreasureGrafica extends CartaGrafica {
         } catch (IOException ex) {
             Logger.getLogger(CartaGrafica.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
     }
 
     
+    @Override
+    protected void paintChildren(Graphics g) {
+        super.paintChildren(g); //To change body of generated methods, choose Tools | Templates.
+        if( modelo.getJogo().getCartaPorIndex(id).getVisivel() )
+            g.drawImage(imagem.getScaledInstance(150, 225, Image.SCALE_SMOOTH), 0, 0, null);
+        else
+            g.drawImage(imageContraCapa.getScaledInstance(150, 225, Image.SCALE_SMOOTH), 0, 0, null);
+    }
 }

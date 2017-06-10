@@ -5,20 +5,30 @@
  */
 package Model.dados;
 
+import java.io.Serializable;
+
 /**
  *
  * @author Diogo
  */
-public abstract class Carta {
+public abstract class Carta implements Serializable{
     protected String nome;
-    
-    Carta(){
-        
+    private Boolean visivel;
+
+    public Carta(){
+        visivel = false;
     }
     public String getNome(){return nome;}
     
     public void setNome(String nome){this.nome = nome;}
     
+    public Boolean getVisivel() {
+        return visivel;
+    }
+
+    public void setVisivel(Boolean visivel) {
+        this.visivel = visivel;
+    }
     public abstract void desenhaCarta();
     
     

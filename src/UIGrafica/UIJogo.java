@@ -17,9 +17,14 @@ import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.GridLayout;
 import java.awt.Insets;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Observable;
 import java.util.Observer;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -30,8 +35,10 @@ public class UIJogo extends JFrame implements Observer {
     private Modelo modelo;
     protected String path;
     
+    private GridBagConstraints c;
     private JPanel dungeon, south;
     private Container cp;
+    private JButton guardar;
     
     private ArrayList<Carta> cartas;
 
@@ -43,6 +50,7 @@ public class UIJogo extends JFrame implements Observer {
         
         criaObjectos();
         dispoeObjectos();
+        registarListeners();
         
         
         setLocation(400, 50);
@@ -62,6 +70,7 @@ public class UIJogo extends JFrame implements Observer {
         south = new JPanel(new FlowLayout(FlowLayout.CENTER, 10, 0));
         criaDungeon();
         criaInfoArea();
+        //mostraCarta();
     }
     
     public void dispoeObjectos() 
@@ -71,58 +80,29 @@ public class UIJogo extends JFrame implements Observer {
   
         cp.add(dungeon, BorderLayout.NORTH);
         cp.add(south,BorderLayout.SOUTH);
-        //cp.add(east, BorderLayout.SOUTH);      
+           
     }
   
     
     private void criaDungeon(){
-        CartaGrafica carta;
+        CartaGrafica carta=null;
         int gridx = 0, gridy = 0, ipadx = 0, ipady= 0;
-        GridBagConstraints c = new GridBagConstraints();
-        modelo.getJogo().getCartas();
+        c = new GridBagConstraints();
         cartas = modelo.getJogo().getCartas();
         
-        for(int i = 0; i < 7; i++){
+       
+        
+        for(int i = 0; i < cartas.size(); i++){
+            Carta card = cartas.get(i);
+            if( card instanceof BossMonster)    carta = new BossMonsterGrafica(this, modelo, i);
+            if( card instanceof Event)          carta = new EventGrafica(this, modelo, i);
+            if( card instanceof Merchant)       carta = new MerchantGrafica(this, modelo, i);
+            if( card instanceof Monster)        carta = new MonsterGrafica(this, modelo, i);
+            if( card instanceof Resting)        carta = new RestingGrafica(this, modelo, i);
+            if( card instanceof Trap)           carta = new TrapGrafica(this, modelo, i);
+            if( card instanceof Treasure)       carta = new TreasureGrafica(this, modelo, i);
             
-            if(i==6) {
-                carta = new CartaTrasGrafica(this, modelo);
-                gridx=4;
-                gridy=1;
-                ipadx = 10;
-                ipady = 5;
-            } else {
-            
-                modelo.getJogo().setCartaAtual(i);
-
-                switch(modelo.getJogo().getCartaAtual().getNome()) {
-                    case "Trap":
-                        carta = new TrapGrafica(this, modelo);
-                        break;
-                    case "Treasure":
-                        carta = new TreasureGrafica(this, modelo);
-                        break;
-                    case "Monster":
-                        carta = new MonsterGrafica(this, modelo);
-                        break;
-                    case "BossMonster":
-                        carta = new BossMonsterGrafica(this, modelo);
-                        break;
-                    case "Event":
-                        carta = new EventGrafica(this, modelo);
-                        break;
-                    case "Merchant":
-                        carta = new MerchantGrafica(this, modelo);
-                        break;
-                    case "Resting":
-                        carta = new RestingGrafica(this, modelo);
-                        break;
-                    default:
-                        carta = new CartaTrasGrafica(this, modelo);
-                        break;      
-                }
-
-
-                switch (i) {
+            switch (i) {
                     case 0:
                         gridx=0;
                         gridy=1;
@@ -168,9 +148,8 @@ public class UIJogo extends JFrame implements Observer {
                     default:
                         break;
                 }
-            }
             
-            //carta = new CartaTrasGrafica(this, modelo);
+            
             c.fill = GridBagConstraints.HORIZONTAL;
             c.gridx = gridx;
             c.gridy = gridy;
@@ -178,63 +157,9 @@ public class UIJogo extends JFrame implements Observer {
             c.ipadx = ipadx;
             c.ipady = ipady;
             dungeon.add(carta, c);
-
         }
-        /*
-        carta = new CartaTrasGrafica(this, modelo);
-        c.fill = GridBagConstraints.HORIZONTAL;
-        c.gridx = 0;
-        c.gridy = 1;
-        c.gridheight = 2;
-        c.ipadx = 10;
-        dungeon.add(carta, c);
-
-        carta = new RestingGrafica(this, modelo);
-        c.fill = GridBagConstraints.HORIZONTAL;
-        c.gridx = 1;
-        c.gridy = 0;
-        c.gridheight = 2;
-        c.ipady = 5;
-        dungeon.add(carta, c);
-
-        carta = new MonsterGrafica(this, modelo);
-        c.fill = GridBagConstraints.HORIZONTAL;
-        c.gridx = 1;
-        c.gridy = 2;
-        c.gridheight = 2;
-        dungeon.add(carta, c);
-        
-        carta = new EventGrafica(this, modelo);
-        c.fill = GridBagConstraints.HORIZONTAL;
-        c.gridx = 2;
-        c.gridy = 1;
-        c.gridheight = 2;
-        c.ipadx = 10;
-        dungeon.add(carta, c);
-        
-        carta = new TrapGrafica(this, modelo);
-        c.fill = GridBagConstraints.HORIZONTAL;
-        c.gridx = 3;
-        c.gridy = 0;
-        c.gridheight = 2;
-        c.ipady = 5;
-        dungeon.add(carta, c);
-        
-        carta = new MerchantGrafica(this, modelo);
-        c.fill = GridBagConstraints.HORIZONTAL;
-        c.gridx = 3;
-        c.gridy = 2;
-        c.gridheight = 2;
-        dungeon.add(carta, c);
-
-        carta = new BossMonsterGrafica(this, modelo);
-        c.fill = GridBagConstraints.HORIZONTAL;
-        c.gridx = 4;
-        c.gridy = 1;
-        c.gridheight = 2;
-        dungeon.add(carta, c);
-        */
-    } 
+       
+    }  
     
     private void  criaInfoArea() {
         CartaGrafica cartaInfo, cartaDungeon;
@@ -242,16 +167,117 @@ public class UIJogo extends JFrame implements Observer {
         cartaInfo = new StatsGrafica(this, modelo);
         cartaDungeon = new TheDungeon(this, modelo);
         
+        guardar = new JButton("Guardar");
+        
         south.add(cartaInfo);
         south.add(cartaDungeon);
+        south.add(guardar);
         
         
     }
 
+    /*
+    private void mostraCarta() {
+        
+        CartaGrafica carta;
+        int gridx = 0, gridy = 0, ipadx = 0, ipady= 0;
+        
+        int nCarta = modelo.getJogo().getCartaAtualIndex();
+
+        switch(modelo.getJogo().getCartaAtual().getNome()) {
+            case "Trap":
+                carta = new TrapGrafica(this, modelo);
+                break;
+            case "Treasure":
+                carta = new TreasureGrafica(this, modelo);
+                break;
+            case "Monster":
+                carta = new MonsterGrafica(this, modelo);
+                break;
+            case "BossMonster":
+                carta = new BossMonsterGrafica(this, modelo);
+                break;
+            case "Event":
+                carta = new EventGrafica(this, modelo);
+                break;
+            case "Merchant":
+                carta = new MerchantGrafica(this, modelo);
+                break;
+            case "Resting":
+                carta = new RestingGrafica(this, modelo);
+                break;
+            default:
+                break;      
+        }
+        
+        switch (nCarta) {
+                    case 0:
+                        gridx=0;
+                        gridy=1;
+                        ipadx = 10;
+                        ipady = 0;
+                        break;
+                    case 1:
+                        gridx=1;
+                        gridy=0;
+                        ipadx = 0;
+                        ipady = 5;
+                        break;
+                    case 2:
+                        gridx=1;
+                        gridy=2;
+                        ipadx = 0;
+                        ipady = 0;
+                        break;
+                    case 3:
+                        gridx=2;
+                        gridy=1;
+                        ipadx = 10;
+                        ipady = 0;
+                        break;
+                    case 4:
+                        gridx=3;
+                        gridy=0;
+                        ipadx = 0;
+                        ipady = 5;
+                        break;
+                    case 5:
+                        gridx=3;
+                        gridy=2;
+                        ipadx = 0;
+                        ipady = 0;
+                        break;
+                    case 6:
+                        gridx=4;
+                        gridy=1;
+                        ipadx = 10;
+                        ipady = 5;
+                        break;
+                    default:
+                        break;
+                }
+        
+    }
+    */
+    protected void registarListeners(){
+        guardar.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                try {
+                    modelo.guardarJogo();
+                } catch (IOException ex) {
+                    Logger.getLogger(UIJogo.class.getName()).log(Level.SEVERE, null, ex);
+                }
+
+            }
+        });
+    }
     
     @Override
     public void update(Observable o, Object arg) {
         repaint();
     }
+
+    
 
 }

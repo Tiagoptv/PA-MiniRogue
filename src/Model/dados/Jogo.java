@@ -18,10 +18,11 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.PrintWriter;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Jogo {
+public class Jogo implements Serializable{
     private IEstado estado;
     private Personagem p;
     private ArrayList<Carta> cartas;
@@ -190,7 +191,7 @@ public class Jogo {
     public IEstado comecarJogo() {
         //aplicaDificuldade();  //System.out.println("Dificuldade aplicada!");
         baralhaCartas();      //System.out.println("Cartas Baralhadas!");
-        
+        getCartas().get(3).setVisivel(true);
         estado = new EsperaCarta(this);
         
         return estado ;
@@ -320,5 +321,10 @@ public class Jogo {
          ((EsperaSpell)estado).aplicaSpell(i);
          return estado;
      }
+
+    public Carta getCartaPorIndex(Integer id) {
+        Carta carta = cartas.get(id);
+        return cartas.get(id);
+    }
 
 }

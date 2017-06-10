@@ -18,8 +18,7 @@ public class StatsGrafica extends CartaGrafica {
     
     public StatsGrafica(UIJogo  f, Modelo m) {
         
-        super(f, m);
-        BufferedImage imagem=null;
+        super(f, m, 0);
         try {        
             
             imagem =  ImageIO.read(new File(System.getProperty("user.dir")+"\\Imagens\\CaracterStats.PNG"));

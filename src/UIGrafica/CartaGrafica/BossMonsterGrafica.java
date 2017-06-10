@@ -3,6 +3,7 @@ package UIGrafica.CartaGrafica;
 
 import Modelo.Modelo;
 import UIGrafica.UIJogo;
+import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.image.BufferedImage;
 import java.io.File;
@@ -17,10 +18,9 @@ import javax.swing.JLabel;
 public class BossMonsterGrafica extends CartaGrafica {
     
     
-    public BossMonsterGrafica(UIJogo  f, Modelo m) {
+    public BossMonsterGrafica(UIJogo  f, Modelo m, int id) {
         
-        super(f, m);
-        BufferedImage imagem=null;
+        super(f, m, id);
         try {        
             
             imagem =  ImageIO.read(new File(System.getProperty("user.dir")+"\\Imagens\\BossMonster.PNG"));
@@ -34,5 +34,13 @@ public class BossMonsterGrafica extends CartaGrafica {
         
     }
 
-    
+    @Override
+    protected void paintChildren(Graphics g) {
+        super.paintChildren(g); //To change body of generated methods, choose Tools | Templates.
+        if( modelo.getJogo().getCartaPorIndex(id).getVisivel() )
+            g.drawImage(imagem.getScaledInstance(150, 225, Image.SCALE_SMOOTH), 0, 0, null);
+        else
+            g.drawImage(imageContraCapa.getScaledInstance(150, 225, Image.SCALE_SMOOTH), 0, 0, null);
+    }
+        
 }

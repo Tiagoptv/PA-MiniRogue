@@ -8,7 +8,7 @@ package Estado;
 import java.io.Serializable;
 
 
-public interface IEstado {
+public interface IEstado  {
     
     /***   Espera Inicio   ***/
     IEstado escolherDificuldade(int op);
