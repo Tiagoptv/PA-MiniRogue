@@ -250,11 +250,8 @@ public class Jogo implements Serializable{
      /** Estado - Espera Escolha Merchant **/
      public IEstado resolveMerchant() {
         
-        /*int op = Menu.realizarTroca();
-        switch(op) {
+        /*switch(op) {
             case 1:
-                op = Menu.opcaoMerchant();
-        
                 if(op <= 5)
                     return realizaCompra(op);
                 else 
@@ -268,18 +265,20 @@ public class Jogo implements Serializable{
                 return estado;
             
             default: 
-        }*/return estado;
+        }
+        */
+        return estado;
     }
      
      public IEstado realizaCompra(int item) {
         Merchant m = new Merchant();
-        //m.realizaCompra(this, item);
+        estado.realizarCompra(item);
         
         return resolveMerchant();
      }
      
      public IEstado realizaVenda(int item) {
-        Merchant m = new Merchant();
+        //Merchant m = new Merchant();
         estado.realizarVenda(item);
         
         return resolveMerchant();

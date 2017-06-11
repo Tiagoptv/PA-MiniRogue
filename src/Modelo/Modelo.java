@@ -15,16 +15,13 @@ import java.util.Observable;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-/**
- *
- * @author Tiago Prior
- */
 public class Modelo extends Observable
 {
     protected Jogo jogo;
     public Modelo(Jogo jogo){
         this.jogo = jogo;
     }
+    
     public Jogo getJogo() 
     {
         return jogo;
@@ -76,15 +73,42 @@ public class Modelo extends Observable
         notifyObservers();
     }
     
-    public void realizaCompra(int id) {
-        jogo.realizaCompra(id);
+    public void realizaCompra(String id) {
+        int idCompra=0;
+        switch(id){
+            case "1 - Ration: +1Food":
+                idCompra = 1;
+                break;
+            case "1 - HealthPotion: +1HP":
+                idCompra = 2;
+                break;
+            case "3 - BigHealthPotion: +4HP":
+                idCompra = 3;
+                break;
+            case "6 - ArmorPiece: +1Armor":
+                idCompra = 4;
+                break;
+            case "8 - Any 1 Spell":
+                idCompra = 5;
+                break;
+        }
+        jogo.realizaCompra(idCompra);
         setChanged();
         notifyObservers();
         
     }
     
-    public void realizaVenda(int id) {
-        jogo.realizaVenda(id);
+    public void realizaVenda(String id) {
+        int idVenda=0;
+        switch(id){
+            case "3 - ArmorPiece":
+                idVenda = 1;
+                break;
+            case "4 - Any 1 Spell":
+                idVenda = 2;
+                break;
+        }
+        jogo.realizaVenda(idVenda);
         setChanged();
         notifyObservers();
     }

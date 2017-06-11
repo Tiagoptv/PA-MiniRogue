@@ -4,7 +4,6 @@
  * and open the template in the editor.
  */
 package Model.dados;
-import UIConsola.Informacoes;
 
 
 public class Treasure extends Carta{

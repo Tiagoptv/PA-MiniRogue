@@ -16,6 +16,7 @@ import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.imageio.ImageIO;
@@ -28,11 +29,25 @@ import javax.swing.JPanel;
 public class MerchantGrafica extends CartaGrafica {
     
     public JPanel opcoes;
-    UIJogo uijogo;
+    private UIJogo uijogo;
+    private ArrayList<String> nomeBotoes; 
+    private ArrayList<JButton> botoes;
 
     public MerchantGrafica(UIJogo  f, Modelo m, int id) {
         super(f, m, id);
         uijogo = f;
+        
+        botoes = new ArrayList<JButton>();
+        
+        nomeBotoes = new ArrayList<String>();
+        nomeBotoes.add(0, "1 - Ration: +1Food");
+        nomeBotoes.add(1, "1 - HealthPotion: +1HP");
+        nomeBotoes.add(2, "3 - BigHealthPotion: +4HP");
+        nomeBotoes.add(3, "6 - ArmorPiece: +1Armor");
+        nomeBotoes.add(4, "8 - Any 1 Spell");
+        nomeBotoes.add(5, "3 - ArmorPiece");
+        nomeBotoes.add(6, "4 - Any 1 Spell");
+        
         try {        
             
             imagem =  ImageIO.read(new File(System.getProperty("user.dir")+"\\Imagens\\Merchant.PNG"));
@@ -49,26 +64,29 @@ public class MerchantGrafica extends CartaGrafica {
         
         for(int i = 1; i < 6; i++)
         {
-            JButton botaoCompra = new JButton(i+"");
+            JButton botaoCompra;
+            botoes.add( botaoCompra = new JButton(""+nomeBotoes.get(i-1)));
             botaoCompra.addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent e) {
-                    m.realizaCompra(Integer.parseInt(botaoCompra.getText()));
+                    m.realizaCompra(botaoCompra.getText());
                 }
             });
             c.gridx = 0;
             c.gridy = i-1;
             c.ipady = 10;
+            c.fill = GridBagConstraints.BOTH;
             opcoes.add(botaoCompra,c);
         }
         
         for(int i = 1; i < 3; i++)
         {
-            JButton botaoVenda = new JButton(i+"");
+            JButton botaoVenda;
+            botoes.add( botaoVenda = new JButton(""+nomeBotoes.get(i+4)));
             botaoVenda.addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent e) {
-                    m.realizaVenda(Integer.parseInt(botaoVenda.getText()));
+                    m.realizaVenda(botaoVenda.getText());
                 }
             });
             c.gridx = 2;
@@ -85,9 +103,10 @@ public class MerchantGrafica extends CartaGrafica {
             }
         });
         c.gridx = 2;
-        c.gridy = 5;
+        c.gridy = 4;
         c.ipady = 10;
         opcoes.add(skip, c);
+        
         
         addActionListener(new ActionListener() {
             @Override

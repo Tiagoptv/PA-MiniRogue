@@ -7,10 +7,7 @@ package Model.dados;
 
 import java.io.Serializable;
 
-/**
- *
- * @author Diogo
- */
+
 public abstract class Carta implements Serializable{
     protected String nome;
     private Boolean visivel;

@@ -74,8 +74,7 @@ public class UIJogo extends JFrame implements Observer {
         //mostraCarta();
     }
     
-    public void dispoeObjectos() 
-    {
+    public void dispoeObjectos() {
         cp = getContentPane();
         cp.setLayout(new BorderLayout());
   
