@@ -6,6 +6,7 @@ import Modelo.Modelo;
 import UIGrafica.UIJogo;
 import com.sun.imageio.plugins.jpeg.JPEG;
 import static com.sun.java.accessibility.util.AWTEventMonitor.addActionListener;
+import java.awt.BorderLayout;
 import java.awt.Graphics;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
@@ -69,7 +70,7 @@ public class MerchantGrafica extends CartaGrafica {
             botaoCompra.addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent e) {
-                    m.realizaCompra(botaoCompra.getText());
+                    m.resolveMerchant(botaoCompra.getText());
                 }
             });
             c.gridx = 0;
@@ -86,7 +87,7 @@ public class MerchantGrafica extends CartaGrafica {
             botaoVenda.addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent e) {
-                    m.realizaVenda(botaoVenda.getText());
+                    m.resolveMerchant(botaoVenda.getText());
                 }
             });
             c.gridx = 2;
@@ -99,24 +100,17 @@ public class MerchantGrafica extends CartaGrafica {
         skip.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                m.mercadoriaPassar();
+                m.resolveMerchant(skip.getText());
             }
         });
         c.gridx = 2;
         c.gridy = 4;
         c.ipady = 10;
         opcoes.add(skip, c);
+        revalidate();
+            repaint();
         
-        
-        addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                modelo.mercadoriaPassar();
-            }
-        });
     }
-
-    
     
     @Override
     protected void paintChildren(Graphics g) {

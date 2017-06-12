@@ -65,7 +65,7 @@ public class Jogo implements Serializable{
     
     
     public boolean comBossMonster() {
-        if( getArea() == 2 || getArea() == 4|| getArea() == 7 || getArea() == 10 || getArea() == 14)
+        if( getArea() == 1 || getArea() == 3|| getArea() == 6 || getArea() == 9 || getArea() == 13)
             return true;
         return false;
     }
@@ -128,9 +128,11 @@ public class Jogo implements Serializable{
     }
     
     public void baralhaCartas(){
+        this.cartas = new ArrayList<Carta>();
         ArrayList<Carta> cartasTemp = new ArrayList<>();
         
-        cartasTemp.add(new Monster(this));
+        //cartasTemp.add(new Monster(this));
+        cartasTemp.add(new Treasure());
         cartasTemp.add(new Merchant());
         cartasTemp.add(new Trap());
         cartasTemp.add(new Treasure());
@@ -145,7 +147,8 @@ public class Jogo implements Serializable{
         }
         this.cartas.add(cartasTemp.get(0));
         if(comBossMonster())
-            this.cartas.add(new BossMonster(this));
+            this.cartas.add(new Treasure());
+            //this.cartas.add(new BossMonster(this));
         cartas.get(0).setVisivel(true);
     }
     
@@ -191,8 +194,8 @@ public class Jogo implements Serializable{
     }
     
     public IEstado comecarJogo() {
-        //aplicaDificuldade();  //System.out.println("Dificuldade aplicada!");
-        baralhaCartas();      //System.out.println("Cartas Baralhadas!");
+        aplicaDificuldade();  
+        baralhaCartas();      
         estado = new EsperaCarta(this);
         
         return estado ;
@@ -231,57 +234,40 @@ public class Jogo implements Serializable{
    
     
     /** Estado - Espera Escolha Rest **/
-     public IEstado resolveResting() {
+     public IEstado resolveResting(int op) {
         
-        Resting rest = new Resting();
-        
-        //int op = Menu.opcaoRestingCard();
-        //rest.descansa(this, op);
-        
-        System.out.println("falta passar para a proxima coluna \nou \nmudar de arena");
-        //usar funçao maisCartas();
-        
-        //voltar ao EsperaCarta();
+        //Resting rest = new Resting();
+ 
+        estado.descansa(op);
 
         return estado;
     }
      
      
      /** Estado - Espera Escolha Merchant **/
-     public IEstado resolveMerchant() {
+     public IEstado resolveMerchant(int idTroca) {
         
-        /*switch(op) {
-            case 1:
-                if(op <= 5)
-                    return realizaCompra(op);
-                else 
-                    return realizaVenda(op);
-                
-            case 2:
-                System.out.println("falta passar para a proxima coluna \nou \nmudar de arena");
-                //usar funçao maisCartas();
-        
-                //voltar ao EsperaCarta();
-                return estado;
-            
-            default: 
-        }
-        */
-        return estado;
+         if(idTroca <= 5)
+             return realizaCompra(idTroca);
+         else if(idTroca > 5 || idTroca <= 7)
+             return realizaVenda(idTroca);
+         else {
+            setEstado(new EsperaCarta(this));
+            virarCartas();
+         } 
+        return new EsperaCarta(this);
     }
      
      public IEstado realizaCompra(int item) {
-        Merchant m = new Merchant();
         estado.realizarCompra(item);
         
-        return resolveMerchant();
+        return estado;
      }
      
      public IEstado realizaVenda(int item) {
-        //Merchant m = new Merchant();
         estado.realizarVenda(item);
         
-        return resolveMerchant();
+        return estado;
      }
      
      
@@ -347,6 +333,7 @@ public class Jogo implements Serializable{
                 }
             }
     }
+    
     private void proximaArea(){
         area++;
         cartaAtual = 0;

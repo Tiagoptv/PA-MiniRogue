@@ -150,7 +150,7 @@ public class Configuracoes extends JFrame implements Constantes{
             @Override
             public void actionPerformed(ActionEvent e) {
                 Integer selected = (Integer) (areaList.getSelectedIndex()+1);
-                modelo.setArea(selected);
+                modelo.setArea(selected-1);
             }
         });
         

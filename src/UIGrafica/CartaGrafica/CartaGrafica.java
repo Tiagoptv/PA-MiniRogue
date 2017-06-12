@@ -25,7 +25,7 @@ import javax.swing.JPanel;
 
 public class CartaGrafica extends JPanel
 {
-    UIJogo frame;
+    public UIJogo frame;
     Modelo modelo;
     JLabel picLabel;
     Integer id;

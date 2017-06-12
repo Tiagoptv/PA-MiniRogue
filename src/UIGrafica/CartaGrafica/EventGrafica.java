@@ -30,7 +30,8 @@ public class EventGrafica extends CartaGrafica {
         } catch (IOException ex) {
             Logger.getLogger(CartaGrafica.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
+        revalidate();
+            repaint();
     }
 
     @Override

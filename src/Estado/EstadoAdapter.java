@@ -54,7 +54,12 @@ public class EstadoAdapter implements IEstado, Serializable{
     
     /*** Espera Escolha Resting ***/
     @Override
-    public IEstado resolveResting() {
+    public IEstado resolveResting(int op) {
+        return this;
+    }
+    
+    @Override
+    public IEstado descansa(int op) {
         return this;
     }
 
@@ -101,6 +106,8 @@ public class EstadoAdapter implements IEstado, Serializable{
     public IEstado escolheCarta(int id) {
         return this;
     }
+
+    
 
 
     

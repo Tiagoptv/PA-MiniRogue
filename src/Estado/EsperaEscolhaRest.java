@@ -24,8 +24,8 @@ public class EsperaEscolhaRest extends EstadoAdapter{
     }
     
     @Override
-    public IEstado resolveResting() {
-        return getJogo().resolveResting();
+    public IEstado resolveResting(int op) {
+        return getJogo().resolveResting(op);
     }
     
 }

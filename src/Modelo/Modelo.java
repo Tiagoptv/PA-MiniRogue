@@ -18,8 +18,10 @@ import java.util.logging.Logger;
 public class Modelo extends Observable
 {
     protected Jogo jogo;
+    public int area;
     public Modelo(Jogo jogo){
         this.jogo = jogo;
+        area=0;
     }
     
     public Jogo getJogo() 
@@ -34,6 +36,8 @@ public class Modelo extends Observable
     
     //tratar eventos
 
+    
+    //espera Inicio
     public void setArea(int area) {
         jogo.setArea(area);
         setChanged();
@@ -72,47 +76,101 @@ public class Modelo extends Observable
         setChanged();
         notifyObservers();
     }
+    //espera Inicio
     
-    public void realizaCompra(String id) {
-        int idCompra=0;
-        switch(id){
-            case "1 - Ration: +1Food":
-                idCompra = 1;
-                break;
-            case "1 - HealthPotion: +1HP":
-                idCompra = 2;
-                break;
-            case "3 - BigHealthPotion: +4HP":
-                idCompra = 3;
-                break;
-            case "6 - ArmorPiece: +1Armor":
-                idCompra = 4;
-                break;
-            case "8 - Any 1 Spell":
-                idCompra = 5;
-                break;
-        }
-        jogo.realizaCompra(idCompra);
+    
+    //resolve Merchant
+    public void resolveMerchant(String id) {
+        
+            int idTroca=0;
+        
+            switch(id){
+                case "1 - Ration: +1Food":
+                    idTroca = 1;
+                    realizaCompra(idTroca);
+                    break;
+                case "1 - HealthPotion: +1HP":
+                    idTroca = 2;
+                    realizaCompra(idTroca);
+                    break;
+                case "3 - BigHealthPotion: +4HP":
+                    idTroca = 3;
+                    realizaCompra(idTroca);
+                    break;
+                case "6 - ArmorPiece: +1Armor":
+                    idTroca = 4;
+                    realizaCompra(idTroca);
+                    break;
+                case "8 - Any 1 Spell":
+                    idTroca = 5;
+                    realizaCompra(idTroca);
+                    break;
+                case "3 - ArmorPiece":
+                    idTroca = 6;
+                    realizaVenda(idTroca);
+                    break;
+                case "4 - Any 1 Spell":
+                    idTroca = 7;
+                    realizaVenda(idTroca);
+                    break;  
+                case "Passar":
+                    idTroca = 8;
+                    mercadoriaPassar();
+                    break;
+            }
+            setChanged();
+            notifyObservers();
+    }
+    
+    public void realizaCompra(int id) {
+        jogo.realizaCompra(id);
         setChanged();
         notifyObservers();
         
     }
     
-    public void realizaVenda(String id) {
-        int idVenda=0;
-        switch(id){
-            case "3 - ArmorPiece":
-                idVenda = 1;
-                break;
-            case "4 - Any 1 Spell":
-                idVenda = 2;
-                break;
-        }
-        jogo.realizaVenda(idVenda);
+    public void realizaVenda(int id) {
+        jogo.realizaVenda(id);
         setChanged();
         notifyObservers();
     }
 
+    public void mercadoriaPassar() {
+        jogo.setEstado(new EsperaCarta(jogo));
+        jogo.virarCartas();
+        setChanged();
+        notifyObservers();
+    }
+    //resolve Merchant
+
+    
+    //resolve Resting
+    public void resolveResting(String str) {
+        int op=0;
+        
+        switch(str){
+            case "Reinforce your Weapon : +1XP":
+                op = 1;
+                jogo.resolveResting(op);
+                break;
+            case "Search for Ration: +1Food":
+                op = 2;
+                //jogo.resolveResting(op);
+                jogo.getEstado().descansa(op);
+                break;
+            case "Heal: +2HP":
+                op = 3;
+                jogo.resolveResting(op);
+                break;
+        }
+            
+        jogo.setEstado(new EsperaCarta(jogo));
+        jogo.virarCartas();
+        setChanged();
+        notifyObservers();
+    }
+    //resolve Resting
+    
     public Boolean isVisivelCartaByClass(String cartaClass) {
         for (Carta carta : jogo.getCartas()) {
             if( carta.getClass().toString().contains(cartaClass) ){
@@ -130,13 +188,12 @@ public class Modelo extends Observable
         setChanged();
         notifyObservers();
     }
-
-    public void mercadoriaPassar() {
-        jogo.setEstado(new EsperaCarta(jogo));
-        jogo.virarCartas();
-        setChanged();
-        notifyObservers();
+    
+    public boolean comBoss() {
+        return jogo.comBossMonster();
     }
+
+
 
 
 

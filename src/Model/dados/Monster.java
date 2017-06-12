@@ -5,10 +5,6 @@
  */
 package Model.dados;
 
-/**
- *
- * @author Diogo
- */
 public class Monster extends CartaMonstro {
     
     public Monster(Jogo j){

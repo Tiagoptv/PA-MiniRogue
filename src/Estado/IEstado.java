@@ -23,7 +23,8 @@ public interface IEstado  {
     
     
     /*** Espera Escolha Resting ***/
-    IEstado resolveResting();
+    IEstado resolveResting(int op);
+    IEstado descansa(int op);
     
     /*** Espera Troca ***/
     IEstado resolveMerchant();

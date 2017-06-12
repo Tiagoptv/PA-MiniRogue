@@ -43,12 +43,6 @@ public class ImgFundo extends JComponent
         setLayout(new BorderLayout());
 	JLabel background=new JLabel(new ImageIcon(path + "ImgFundo.png"));
 	add(background);
-	/*background.setLayout(new FlowLayout());
-	
-        b1=new JButton("Start");
-        b2= new JButton("Load");
-	background.add(b1);
-	background.add(b2);*/
         
     }
 

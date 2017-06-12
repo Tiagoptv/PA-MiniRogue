@@ -5,7 +5,6 @@
  */
 package Model.dados;
 
-
 public class Merchant extends Carta {
     
     public Merchant(){

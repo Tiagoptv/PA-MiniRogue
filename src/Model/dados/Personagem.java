@@ -41,11 +41,11 @@ public class Personagem implements Serializable{
     public int getDmg(){return dmg;}
     
     
-    public void setHp(int hp){ this.hp = hp;}
-    public void setXp(int xp){ this.xp = xp;}
-    public void setArmor(int armor){ this.armor = armor;}
-    public void setGold(int gold){ this.gold = gold;}
-    public void setFood(int food){ this.food = food;}
+    public void setHp(int hp){ this.hp = hp; if(this.hp > 20) this.hp=20; /*Apenas por questoes de tempo!! Para não haver bugs na interface*/}
+    public void setXp(int xp){ this.xp = xp; if(this.xp > 18) this.xp=18; /*Apenas por questoes de tempo!! Para não haver bugs na interface*/}
+    public void setArmor(int armor){ this.armor = armor; if(this.armor > 5) this.armor=5; /*Apenas por questoes de tempo!! Para não haver bugs na interface*/}
+    public void setGold(int gold){ this.gold = gold; if(this.gold > 20) this.gold=20; /*Apenas por questoes de tempo!! Para não haver bugs na interface*/}
+    public void setFood(int food){ this.food = food; if(this.food > 6) this.food=6; /*Apenas por questoes de tempo!! Para não haver bugs na interface*/}
     public void setFire(int fire){ this.fire = fire;}
     public void setIce(int ice){ this.ice = ice;}
     public void setPoison(int poison){ this.poison = poison;}

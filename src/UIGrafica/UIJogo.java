@@ -71,6 +71,7 @@ public class UIJogo extends JFrame implements Observer {
         estadoLabel = new JLabel("qualquercoisita");
         criaDungeon();
         criaInfoArea();
+        criaToken();
         //mostraCarta();
     }
     
@@ -84,7 +85,6 @@ public class UIJogo extends JFrame implements Observer {
            
     }
   
-    
     private void criaDungeon(){
         CartaGrafica carta=null;
         int gridx = 0, gridy = 0, ipadx = 0, ipady= 0;
@@ -174,6 +174,10 @@ public class UIJogo extends JFrame implements Observer {
         south.add(cartaDungeon);
         south.add(guardar);   
     }
+
+    private void criaToken() {
+        
+    }
     
     protected void registarListeners(){
         guardar.addActionListener(new ActionListener() {
@@ -192,7 +196,20 @@ public class UIJogo extends JFrame implements Observer {
     @Override
     public void update(Observable o, Object arg) {
         estadoLabel.setText(""+modelo.getJogo().getEstado().toString());
+        
+        if(modelo.getJogo().getArea() != modelo.area ) {
+            dungeon.setVisible(false); 
+            dungeon.invalidate(); 
+            dungeon.removeAll();
+            dungeon = new JPanel(new GridBagLayout());
+            criaDungeon();
+            cp.add(dungeon, BorderLayout.NORTH);
+            modelo.area= modelo.getJogo().getArea();
+            revalidate();
+            dungeon.setVisible(true);
+        }
         repaint();
+        
     }
 
     
