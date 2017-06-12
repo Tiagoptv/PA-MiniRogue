@@ -167,7 +167,15 @@ public class EsperaCarta extends EstadoAdapter{
     }
     
     @Override
-    public IEstado resolveTresureEvent() {
+    public IEstado resolveTresureEvent(int dado) {
+        if(jogo.getCartaAtual() instanceof Treasure) {
+            recebeGold();
+            efeitoCartaTreasure(dado);
+            //trocaSpell(dado);
+        }
+        else {
+            efeitoCartaEvent(dado);
+        }
         return this;
     }
     

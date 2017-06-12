@@ -18,7 +18,7 @@ public interface IEstado  {
     
     /*** Espera Carta ***/
     IEstado escolheCarta(int id);
-    IEstado resolveTresureEvent();
+    IEstado resolveTresureEvent(int dado);
     IEstado monstroEncontrado();
     
     
@@ -33,6 +33,7 @@ public interface IEstado  {
     
     /*** Espera Ataque ***/
     IEstado lancaDados();
+    IEstado aplicaAtaqueAMonstro();
     
     /*** Espera Feats ***/
     IEstado aplicaFeats();

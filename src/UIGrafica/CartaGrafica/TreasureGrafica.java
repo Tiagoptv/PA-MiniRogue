@@ -33,7 +33,7 @@ public class TreasureGrafica extends CartaGrafica {
             Logger.getLogger(CartaGrafica.class.getName()).log(Level.SEVERE, null, ex);
         }
         revalidate();
-            repaint();
+        repaint();
     }
 
     
@@ -44,5 +44,8 @@ public class TreasureGrafica extends CartaGrafica {
             g.drawImage(imagem.getScaledInstance(150, 225, Image.SCALE_SMOOTH), 0, 0, null);
         else
             g.drawImage(imageContraCapa.getScaledInstance(150, 225, Image.SCALE_SMOOTH), 0, 0, null);
+        
     }
+    
+    
 }

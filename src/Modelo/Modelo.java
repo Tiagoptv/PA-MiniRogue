@@ -6,9 +6,7 @@
 package Modelo;
 
 import Estado.EsperaCarta;
-import Model.dados.Carta;
-import Model.dados.Jogo;
-import Model.dados.Treasure;
+import Model.dados.*;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.Observable;
@@ -151,16 +149,15 @@ public class Modelo extends Observable
         switch(str){
             case "Reinforce your Weapon : +1XP":
                 op = 1;
-                jogo.resolveResting(op);
+                jogo.getEstado().descansa(op);
                 break;
             case "Search for Ration: +1Food":
                 op = 2;
-                //jogo.resolveResting(op);
                 jogo.getEstado().descansa(op);
                 break;
             case "Heal: +2HP":
                 op = 3;
-                jogo.resolveResting(op);
+                jogo.getEstado().descansa(op);
                 break;
         }
             
@@ -170,6 +167,48 @@ public class Modelo extends Observable
         notifyObservers();
     }
     //resolve Resting
+    
+    //resolve Ataque
+    public void resolveAtaque(String text) {
+        
+        int idTroca=0;
+        
+            switch(text){
+                case "Lançar dados":
+                    lancaDados();
+                    break;
+                case "Reroll":
+                    idTroca = 2;
+                    realizaCompra(idTroca);
+                    break;
+                case "Feat":
+                    idTroca = 3;
+                    realizaCompra(idTroca);
+                    break;
+            }
+            
+            setChanged();
+            notifyObservers();
+    }
+    
+    private void lancaDados() {
+        int dado, totalDamage= 0;
+        for(int i =0; i < jogo.getNdadosDesbloqueados()-1;i++) {
+            dado = Dado.lancaDado();
+            totalDamage += dado;
+            if(dado ==6)
+                critico();
+            
+        }
+//        jogo.getEstado().aplicaAtaqueAMonstro();
+        setChanged();
+        notifyObservers();
+    }
+    
+    private void critico() {
+        //ativa o botao reroll
+    }
+    //resolve Ataque
     
     public Boolean isVisivelCartaByClass(String cartaClass) {
         for (Carta carta : jogo.getCartas()) {
@@ -192,6 +231,12 @@ public class Modelo extends Observable
     public boolean comBoss() {
         return jogo.comBossMonster();
     }
+
+    
+
+    
+
+    
 
 
 

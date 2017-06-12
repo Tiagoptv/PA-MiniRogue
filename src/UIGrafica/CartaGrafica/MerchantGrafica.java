@@ -108,8 +108,7 @@ public class MerchantGrafica extends CartaGrafica {
         c.ipady = 10;
         opcoes.add(skip, c);
         revalidate();
-            repaint();
-        
+        repaint();
     }
     
     @Override

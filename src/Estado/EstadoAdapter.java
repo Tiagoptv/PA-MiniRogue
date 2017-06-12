@@ -43,7 +43,7 @@ public class EstadoAdapter implements IEstado, Serializable{
     
     /***  Espera Carta  ***/
     @Override
-    public IEstado resolveTresureEvent() {
+    public IEstado resolveTresureEvent(int dado) {
         return this;
     }
     @Override
@@ -84,6 +84,11 @@ public class EstadoAdapter implements IEstado, Serializable{
         return this;
     }
     
+    @Override
+    public IEstado aplicaAtaqueAMonstro() {
+        return this;
+    }
+    
     /*** Espera Feats ***/
     @Override
     public IEstado aplicaFeats() {
@@ -106,6 +111,8 @@ public class EstadoAdapter implements IEstado, Serializable{
     public IEstado escolheCarta(int id) {
         return this;
     }
+
+    
 
     
 

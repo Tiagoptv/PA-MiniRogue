@@ -90,8 +90,9 @@ public class RestingGrafica extends CartaGrafica {
             revalidate();
             repaint();
         }
-        else{
+        if(modelo.getJogo().getEstado() instanceof Estado.EsperaCarta){
             uijogo.south.remove(opcoes);
+            //opcoes.setVisible(false);
         }
     }
 }

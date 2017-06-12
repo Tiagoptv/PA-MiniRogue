@@ -36,7 +36,7 @@ public class UIJogo extends JFrame implements Observer {
     protected String path;
     private GridBagConstraints c;
     public JPanel dungeon, south;
-    public JLabel estadoLabel;
+    public JLabel estadoLabel, dado;
     private Container cp;
     private JButton guardar;
     
@@ -69,19 +69,18 @@ public class UIJogo extends JFrame implements Observer {
         dungeon = new JPanel(new GridBagLayout());
         south = new JPanel(new FlowLayout(FlowLayout.CENTER, 10, 0));
         estadoLabel = new JLabel("qualquercoisita");
+        //dado = new JLabel("Ultimo lançamento do dado: "+ modelo.getJogo().lancaDados());
         criaDungeon();
         criaInfoArea();
-        criaToken();
-        //mostraCarta();
     }
     
     public void dispoeObjectos() {
         cp = getContentPane();
         cp.setLayout(new BorderLayout());
   
-        cp.add(estadoLabel, BorderLayout.LINE_END);
+        cp.add(estadoLabel, BorderLayout.SOUTH);       //Mostrar o estado atual
         cp.add(dungeon, BorderLayout.NORTH);
-        cp.add(south,BorderLayout.SOUTH);
+        cp.add(south,BorderLayout.WEST);
            
     }
   
@@ -174,10 +173,6 @@ public class UIJogo extends JFrame implements Observer {
         south.add(cartaDungeon);
         south.add(guardar);   
     }
-
-    private void criaToken() {
-        
-    }
     
     protected void registarListeners(){
         guardar.addActionListener(new ActionListener() {
@@ -188,7 +183,6 @@ public class UIJogo extends JFrame implements Observer {
                 } catch (IOException ex) {
                     Logger.getLogger(UIJogo.class.getName()).log(Level.SEVERE, null, ex);
                 }
-
             }
         });
     }
@@ -208,6 +202,7 @@ public class UIJogo extends JFrame implements Observer {
             revalidate();
             dungeon.setVisible(true);
         }
+        revalidate();
         repaint();
         
     }

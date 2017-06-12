@@ -131,7 +131,7 @@ public class Jogo implements Serializable{
         this.cartas = new ArrayList<Carta>();
         ArrayList<Carta> cartasTemp = new ArrayList<>();
         
-        //cartasTemp.add(new Monster(this));
+        cartasTemp.add(new Monster(this));
         cartasTemp.add(new Treasure());
         cartasTemp.add(new Merchant());
         cartasTemp.add(new Trap());
@@ -207,21 +207,9 @@ public class Jogo implements Serializable{
     public IEstado resolveTresureEvent() {
         
         int dado = Dado.lancaDado();
-        
-        if(getCartaAtual() instanceof  Treasure) {
-            Treasure tesouro = (Treasure) getCartaAtual();
-            //tesouro.recebeGold(this);
-            //tesouro.efeitoCarta(this, dado);
-        }
-        
-        if(getCartaAtual() instanceof  Event) {
-            Event evento = new Event();
-            //evento.efeitoCarta(this, dado);
-        }
-        
-        //usar funçao maisCartas();
-        
-        //voltar ao EsperaCarta();
+       
+        estado.resolveTresureEvent(dado);
+
         virarCartas();
         return new EsperaCarta(this);
     }
